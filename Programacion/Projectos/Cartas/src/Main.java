@@ -1,5 +1,3 @@
-import EjerciciosClase.Objetos.Cavallo;
-
 /**
  * Project name: DAM20/PACKAGE_NAME
  * Filename:
@@ -12,7 +10,6 @@ import EjerciciosClase.Objetos.Cavallo;
  */
 public class Main {
     public static void main(String[] args) {
-        //Añadir clase
-
+        //Ejecutar aqui las clsases
     }
 }
