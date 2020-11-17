@@ -10,6 +10,7 @@ package EjerciciosClase.Objetos;
  * @Version: 1.0
  */
 public class Cavallo {
+    //Atributos
     private String nombre;
     private int edad;
     private String colorOjos;
