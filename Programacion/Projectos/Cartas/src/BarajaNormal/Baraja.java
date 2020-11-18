@@ -5,12 +5,12 @@ import Recursos.Numeros;
  * Filename: Baraja
  * Created:  14/11/2020 / 13:47
  * Description: Creamos una clase baraja para poder utilizarla de padre a la hora de crear barajas nuevas.
- * Revision: 1
+ * Revision: 2
  * @Author: Ismael - fmartin@nigul.cide.es
- * @Version: 0.1
+ * @Version: 0.2
  */
-public abstract class Baraja<T> {
-//Attributes
+public abstract class Baraja<T extends Carta> {
+    //Attributes
     protected Carta<T>[] cartas;
     protected int posSigCarta; //Indica la posición de la siguiente carta.
     protected int numCartas;
@@ -19,22 +19,8 @@ public abstract class Baraja<T> {
     public Baraja(){
         this.posSigCarta=0;
     }
-//Getters/Setters
-//Others Methods
-    /*private void crearBaraja(){
-        String[] tipos=Carta.TIPOS;
-        for (int i = 0; i < tipos.length; i++) {
-            for (int j = 0; j < Carta.LIMITE; j++) {
-                if (!(j==7||j==8)){
-                    if (j>=9){
-                        cartas[i*(Carta.LIMITE-2)+(j-2)]=new Carta(j+1, tipos[i]);
-                    }else {
-                        cartas[i*(Carta.LIMITE-2)+j]=new Carta(j+1, tipos[i]);
-                    }
-                }
-            }
-        }
-    }*/
+    //Getters/Setters
+    //Others Methods
     public abstract void crearBaraja();
     public void barajar(){
         int posAleatoria=0;

@@ -1,6 +1,4 @@
-import BarajaNormal.Baraja;
-import BarajaNormal.Carta;
-
+import BarajaNormal.*;
 /**
  * Project name: DAM20/PACKAGE_NAME
  * Filename:
@@ -14,6 +12,12 @@ import BarajaNormal.Carta;
 public class Main {
     public static void main(String[] args) {
         //Ejecutar aqui las clsases
-
+        BarajaF b = new BarajaF();
+        System.out.println("Hay "+b.cartasDisponibles()+" cartas disponibles");
+        b.repartir();
+        b.darCartas(5);
+        System.out.println("Hay "+b.cartasDisponibles()+" cartas disponibles");
+        System.out.println("Castas sacadas de momento");
+        b.mostrarMano();
     }
 }

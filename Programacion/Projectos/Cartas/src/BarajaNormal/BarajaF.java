@@ -1,4 +1,5 @@
 package BarajaNormal;
+import Enumerados.PalosF;
 
 /**
  * Project name: DAM20/BarajaNormal
@@ -10,7 +11,7 @@ package BarajaNormal;
  * @Author: Ismael - fmartin@nigul.cide.es
  * @Version: 0.0
  */
-public class BarajaF extends Baraja{
+public class BarajaF extends Baraja<CartaF>{
     //Attriubutes
     //Builder
     public BarajaF(){
@@ -31,12 +32,13 @@ public class BarajaF extends Baraja{
 
     @Override
     public void crearBaraja() {
-        this.cartas=(Carta<PalosF>[]) new Carta[numCartas];//Indicamos de que palos seran las coartas con (Carta<PalosF>[])...
+        this.cartas= (Carta<CartaF>[]) new Carta[numCartas];//Indicamos de que palos seran las coartas con (Carta<PalosF>[])...
         PalosF[] tipos=PalosF.values();
 
         for (int i = 0; i < tipos.length; i++) {
             for (int j = 0; j < cartasPorTipo; j++) {
-                    cartas[i*cartasPorTipo+j]=new Carta(j+1, tipos[i]);
+                    cartas[i*cartasPorTipo+j]= new CartaF(j+1, tipos[i]);
+
             }
         }
     }

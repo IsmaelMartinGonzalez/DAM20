@@ -1,4 +1,4 @@
-package BarajaNormal;
+package Enumerados;
 
 /**
  * Project name: DAM20/BarajaNormal
@@ -10,9 +10,9 @@ package BarajaNormal;
  * @Author: Ismael - fmartin@nigul.cide.es
  * @Version:
  */
-public enum PalosE {
-    OROS,
-    COPAS,
-    ESPADAS,
-    BASTOS;
+public enum PalosF {
+    PICAS,
+    DIAMANTES,
+    TREBOLES,
+    CORAZONES;
 }
