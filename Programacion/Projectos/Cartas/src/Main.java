@@ -1,3 +1,6 @@
+import BarajaNormal.Baraja;
+import BarajaNormal.Carta;
+
 /**
  * Project name: DAM20/PACKAGE_NAME
  * Filename:
@@ -11,5 +14,6 @@
 public class Main {
     public static void main(String[] args) {
         //Ejecutar aqui las clsases
+
     }
 }

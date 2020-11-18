@@ -5,29 +5,71 @@ package BarajaNormal;
  * Filename: Carta
  * Created:  14/11/2020 / 13:47
  * Description: Creamos un objeto llmado carta para mas adelante poder crear una barja de objetos carta.
- *              La baraja de ejmplo sera una baraja española, en la que quitaremos dos cartas la 8 y la 9
- *              por tanto tendremos una barja de 40 cartas.
- * Revision:
- *
+ *              Utilizaremos esta clase carta como padre paoder crear distintas barajs de cartas.
+ * Revision: 1
  * @Author: Ismael - fmartin@nigul.cide.es
- * @Version:
+ * @Version: 0.1
  */
-public class Carta {
+public class Carta<T> {
 //Attributes
     private int valor;
-    private String palo;
+    private T tipo;
 
-    //Declaramos una constante de palos para una baraja española
-    public static final String[] PALOS={"ESPADAS", "BASTOS", "OROS","COPAS"};
 //Builder
-    public Carta(int valor, String palo){
+    public Carta(int valor, T palo){
         this.valor=valor;
-        this.palo=palo;
+        this.tipo=palo;
     }
 //Getters/Setters
-//Others Methods
+    public int getValor() {
+        return valor;
+    }
+    public T getTipo() {
+        return tipo;
+    }
+
+    //Others Methods
     @Override
-    public String toString(){
-        return "valor=" + valor + ", palo=" + palo;
+    public String toString() {
+        String estado="";
+        String nombreFigura="";
+        if (tipo.getClass().getSimpleName().equals("PalosE")){
+            switch (valor){
+                case 1:
+                    nombreFigura="AS";
+                    break;
+                case 10:
+                    nombreFigura="Sota";
+                    break;
+                case 11:
+                    nombreFigura="Caballo";
+                    break;
+                case 12:
+                    nombreFigura="Rey";
+                    break;
+                default:
+                    nombreFigura=valor+"";
+            }
+        }else if (tipo.getClass().getSimpleName().equals("PalosF")){
+            switch (valor){
+                case 1:
+                    nombreFigura="AS";
+                    break;
+                case 11:
+                    nombreFigura="Jack";
+                    break;
+                case 12:
+                    nombreFigura="Reina";
+                    break;
+                case 13:
+                    nombreFigura="Rey";
+                    break;
+                default:
+                    nombreFigura=valor+"";
+            }
+        }
+
+        estado=nombreFigura+" de "+ tipo;
+        return estado;
     }
 }

@@ -19,6 +19,7 @@ public class Cavallo {
     private String sexo;
 
     //Constructor
+
     public Cavallo(String nombre, int edad, int altura, String sexo){
         this.nombre = nombre;
         this.edad=edad;
