@@ -32,13 +32,11 @@ public class BarajaF extends Baraja<CartaF>{
 
     @Override
     public void crearBaraja() {
-        this.cartas= (Carta<CartaF>[]) new Carta[numCartas];//Indicamos de que palos seran las coartas con (Carta<PalosF>[])...
         PalosF[] tipos=PalosF.values();
 
         for (int i = 0; i < tipos.length; i++) {
             for (int j = 0; j < cartasPorTipo; j++) {
-                    cartas[i*cartasPorTipo+j]= new CartaF(j+1, tipos[i]);
-
+                    this.cartas.push(new CartaF(j+1, tipos[i]));
             }
         }
     }

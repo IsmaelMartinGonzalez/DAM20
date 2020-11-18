@@ -6,7 +6,7 @@ import Enumerados.PalosE;
  * Project name: DAM20/BarajaNormal
  * Filename: Carta de baraja Española
  * Created:  18/11/2020 / 14:39
- * Description: Creamos un objeto hijo de carta Que sera una carta de la baraja Española
+ * Description: Creamos un objeto hijo de carta Que sera una carta de la baraja es
  * Revision:
  *
  * @Author: Ismael - fmartin@nigul.cide.es

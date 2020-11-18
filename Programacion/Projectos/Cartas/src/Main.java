@@ -12,12 +12,9 @@ import BarajaNormal.*;
 public class Main {
     public static void main(String[] args) {
         //Ejecutar aqui las clsases
-        BarajaF b = new BarajaF();
-        System.out.println("Hay "+b.cartasDisponibles()+" cartas disponibles");
+        BarajaF b=new BarajaF();
         b.repartir();
-        b.darCartas(5);
-        System.out.println("Hay "+b.cartasDisponibles()+" cartas disponibles");
-        System.out.println("Castas sacadas de momento");
-        b.mostrarMano();
+
+        b.mostrarBarja();
     }
 }

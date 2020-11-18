@@ -41,12 +41,12 @@ public class BarajaE extends Baraja<CartaE>{
         for (int i = 0; i < tipos.length; i++) {
             for (int j = 0; j < cartasPorTipo; j++) {
                 if (bCompleta){
-                    cartas[i*cartasPorTipo+j]= new CartaE(j+1, tipos[i]);
+                    this.cartas.push(new CartaE(j+1, tipos[i]));
                 }else {
                     if (j>=7){
-                        cartas[i*cartasPorTipo+j]=new CartaE(j+3, tipos[i]);
+                        this.cartas.push(new CartaE(j+3, tipos[i]));
                     }else {
-                        cartas[i*cartasPorTipo+j]=new CartaE(j+1, tipos[i]);
+                        this.cartas.push(new CartaE(j+1, tipos[i]));
                     }
                 }
             }

@@ -28,6 +28,5 @@ public abstract class Carta<T> {
     public T getTipo() {
         return tipo;
     }
-
     //Others Methods
 }
