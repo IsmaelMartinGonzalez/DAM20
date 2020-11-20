@@ -1,4 +1,4 @@
-package BarajaNormal;
+package Base;
 
 /**
  * Project name: DAM20/Cartas/BarajaNormal

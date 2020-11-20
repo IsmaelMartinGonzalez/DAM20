@@ -1,6 +1,6 @@
-package BarajaNormal;
+package BarajaFren;
 
-import Enumerados.PalosE;
+import Base.Carta;
 import Enumerados.PalosF;
 
 /**

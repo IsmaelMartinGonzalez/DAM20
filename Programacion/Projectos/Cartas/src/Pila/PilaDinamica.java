@@ -1,16 +1,13 @@
 package Pila;
 
 /**
- * Project name: DAM20/Pila
- * Filename:
- * Created:  18/11/2020 / 15:15
- * Description:
- * Revision:
+ * Clase Pila Dinamica
  *
- * @Author: Ismael - fmartin@nigul.cide.es
- * @Version:
+ * @author DiscoDurodeRoer
+ * @param <T>
  */
 public class PilaDinamica<T> {
+
     //Atributos
     private Nodo<T> top; //Ultimo nodo que se ha incluido
     private int tamanio;
@@ -108,4 +105,5 @@ public class PilaDinamica<T> {
         }
 
     }
+
 }

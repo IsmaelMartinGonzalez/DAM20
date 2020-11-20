@@ -1,14 +1,10 @@
 package Pila;
 
 /**
- * Project name: DAM20/Pila
- * Filename:
- * Created:  18/11/2020 / 15:14
- * Description:
- * Revision:
+ * Clase Nodo
  *
- * @Author: Ismael - fmartin@nigul.cide.es
- * @Version:
+ * @author DiscoDurodeRoer
+ * @param <T>
  */
 public class Nodo<T> {
 

@@ -1,5 +1,6 @@
-package BarajaNormal;
+package BarajaEsp;
 
+import Base.Carta;
 import Enumerados.PalosE;
 
 /**
@@ -26,22 +27,22 @@ public class CartaE extends Carta<PalosE>{
     public String toString() {
         String estado="";
         String nombreFigura="";
-            switch (valor){
-                case 1:
-                    nombreFigura="AS";
-                    break;
-                case 10:
-                    nombreFigura="Sota";
-                    break;
-                case 11:
-                    nombreFigura="Caballo";
-                    break;
-                case 12:
-                    nombreFigura="Rey";
-                    break;
-                default:
-                    nombreFigura=valor+"";
-            }
+        switch (valor){
+            case 1:
+                nombreFigura="AS";
+                break;
+            case 10:
+                nombreFigura="Sota";
+                break;
+            case 11:
+                nombreFigura="Caballo";
+                break;
+            case 12:
+                nombreFigura="Rey";
+                break;
+            default:
+                nombreFigura=valor+"";
+        }
         estado=nombreFigura+" de "+ tipo;
         return estado;
     }

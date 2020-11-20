@@ -1,4 +1,6 @@
-import BarajaNormal.*;
+import BarajaEsp.BarajaE;
+import BarajaFren.BarajaF;
+
 /**
  * Project name: DAM20/PACKAGE_NAME
  * Filename:
@@ -12,9 +14,6 @@ import BarajaNormal.*;
 public class Main {
     public static void main(String[] args) {
         //Ejecutar aqui las clsases
-        BarajaF b=new BarajaF();
-        b.repartir();
 
-        b.mostrarBarja();
     }
 }

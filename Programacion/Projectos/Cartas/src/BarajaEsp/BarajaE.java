@@ -1,7 +1,18 @@
-package BarajaNormal;
+package BarajaEsp;
 
+import Base.Baraja;
 import Enumerados.PalosE;
 
+/**
+ * Project name: DAM20/BarajaEsp
+ * Filename:
+ * Created:  18/11/2020 / 17:46
+ * Description:
+ * Revision:
+ *
+ * @Author: Ismael - fmartin@nigul.cide.es
+ * @Version:
+ */
 /**
  * Project name: DAM20/BarajaNormal
  * Filename: Faraja Francesa

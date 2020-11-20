@@ -1,6 +1,6 @@
-package BarajaNormal;
+package BarajaFren;
 import Enumerados.PalosF;
-
+import Base.*;
 /**
  * Project name: DAM20/BarajaNormal
  * Filename: Baraja Francesa
@@ -36,7 +36,7 @@ public class BarajaF extends Baraja<CartaF>{
 
         for (int i = 0; i < tipos.length; i++) {
             for (int j = 0; j < cartasPorTipo; j++) {
-                    this.cartas.push(new CartaF(j+1, tipos[i]));
+                this.cartas.push(new CartaF(j+1, tipos[i]));
             }
         }
     }
