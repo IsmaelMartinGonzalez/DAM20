@@ -1,4 +1,3 @@
-import EjerciciosClase.Objetos.Cavallo;
 
 /**
  * Project name: DAM20/PACKAGE_NAME
