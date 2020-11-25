@@ -1,4 +1,7 @@
+import EjerciciosClase.Condicionales.*;
+import EjerciciosClase.Objetos.NumRedondo;
 
+import java.util.Scanner;
 /**
  * Project name: DAM20/PACKAGE_NAME
  * Filename:

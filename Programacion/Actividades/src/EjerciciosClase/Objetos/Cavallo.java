@@ -27,6 +27,8 @@ public class Cavallo {
         this.sexo=sexo;
     }
 
+    public Cavallo(){
+    }
     //Getters y setters
     public String getNombre() {
         return nombre;

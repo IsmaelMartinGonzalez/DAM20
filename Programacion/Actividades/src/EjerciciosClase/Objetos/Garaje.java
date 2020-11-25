@@ -12,30 +12,30 @@ import java.util.Scanner;
  */
 public class Garaje {
     //Attriubutes
-    private int userHours;
+    private double userHours;
     private Double charge;
     private String matricula;
     //Cosntants
-    public static final int MINCHARGE = 2;
-    public static final int MAXCHARGE = 10;
-    public static final Double EXTRACHARGE = 0.5;
+    public static final double MINCHARGE = 2.00;
+    public static final double MAXCHARGE = 10.00;
+    public static final double EXTRACHARGE = 0.5;
     //Builder
     public Garaje(){}
     //Getters/Setters
-    public Double getCharge() {
+    public double getCharge() {
         return this.charge;
     }
-    public int getUserHours() {
+    public double getUserHours() {
         return this.userHours;
     }
-    public void setUserHours(Scanner sc) {
-        this.userHours = sc.nextInt();
+    public void setUserHours(int sc) {
+        this.userHours = sc;
     }
     public String getMatricula() {
         return matricula;
     }
-    public void setMatricula(Scanner sc) {
-        this.matricula = sc.next();
+    public void setMatricula(String sc) {
+        this.matricula = sc;
     }
     //Other Methods
     public double calculateChrages() {
@@ -45,7 +45,7 @@ public class Garaje {
             if (userHours <= 18) {
                 charge = ((userHours - 3) * EXTRACHARGE) + MINCHARGE;
             } else if (userHours >= 19 && userHours <= 24) {
-                charge = 10.0;
+                charge = MAXCHARGE;
             }
         }else {
             System.out.println("El tiempo maximos es de 24 horas");
@@ -54,7 +54,38 @@ public class Garaje {
         return getCharge();
     }
     public String info(){
-        String info ="Su matricula es "+getMatricula()+" tolat de horas estacionado "+userHours+"\nTotal a pagar "+getCharge()+" USD";
+        String info ="Su matricula es "+getMatricula()+" tolat de horas estacionado "+getUserHours()+"\nTotal a pagar "+getCharge()+" USD";
         return info;
     }
 }
+/*
+        Scanner sc = new Scanner(System.in);
+        Garaje g = new Garaje();
+        System.out.print("Introduce tu matricula");
+        g.setMatricula(sc);
+        System.out.println("Introduce las horas estacionadas");
+        g.setUserHours(sc);
+        g.calculateChrages();
+        System.out.println(g.info());
+        */
+/*
+* Scanner sc = new Scanner(System.in);
+        Garaje[] personas= new Garaje[5];
+        String matricula;
+        int horas;
+
+        for (int i = 0; i < personas.length; i++) {
+            personas[i]=new Garaje();
+            System.out.print("Introduce tu matricula");
+            matricula=sc.next();
+            personas[i].setMatricula(matricula);
+            System.out.println("Introduce las horas estacionadas");
+            horas=sc.nextInt();
+            personas[i].setUserHours(horas);
+            personas[i].calculateChrages();
+        }
+
+        for (int i = 0; i < personas.length; i++) {
+            System.out.println(personas[i].info());
+        }
+* */

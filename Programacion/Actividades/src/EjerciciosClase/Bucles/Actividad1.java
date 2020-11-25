@@ -9,5 +9,10 @@ public class Actividad1 {
             int multiplo = numero * i;
             System.out.println(multiplo);
         }
+        /* Terea corregida
+        for(int i = 0; i <= 100; i += 5) {
+            System.out.println(i);
+        }
+         */
     }
 }

@@ -31,5 +31,36 @@ public class Actividad14 {
             System.out.println("Error");
             System.exit(1);
         }
+
+        /* Tarea corregida
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Introduiu la base: ");
+        int base = Integer.parseInt(sc.nextLine());
+
+        System.out.print("Introduiu l'exponent: ");
+        int exponent = Integer.parseInt(sc.nextLine());
+
+        double potencia = 1;
+
+        if (exponent == 0) {
+            potencia = 1;
+        }
+
+        if (exponent > 0) {
+            for (int i = 0; i < exponent; i++) {
+                potencia *= base;
+            }
+        }
+
+        if (exponent < 0) {
+        //-exponente en la condición quiere decir que trate como un numero positivo su valor.
+            for (int i = 0; i < -exponent; i++) {
+                potencia *= base;
+            }
+
+            potencia = 1/potencia;
+        }
+
+        System.out.println(base + "^" + exponent + " = " + potencia);*/
     }
 }

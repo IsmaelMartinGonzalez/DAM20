@@ -13,4 +13,12 @@ public class Actividad3 {
             i++;
         }while (i<=100);
     }
+    /*Tarea corregida
+    int i = 0;
+
+        do {
+            System.out.println(i);
+            i+=5;
+        } while(i <= 100);
+     */
 }

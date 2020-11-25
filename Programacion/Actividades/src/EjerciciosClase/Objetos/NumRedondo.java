@@ -11,14 +11,18 @@ package EjerciciosClase.Objetos;
  */
 public class NumRedondo {
     //Attriubutes
-    double num=5.5678;
+    private double num;
     //Builder
     public NumRedondo(){
+        this.num=500;
     }
     //Getters/Setters
 
     public double getNum() {
         return num;
+    }
+    public void setNum(double num) {
+        this.num = num;
     }
 
     //Other Methods
