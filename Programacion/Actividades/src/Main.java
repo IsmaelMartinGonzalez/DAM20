@@ -1,7 +1,5 @@
-import EjerciciosClase.Condicionales.*;
-import EjerciciosClase.Objetos.NumRedondo;
+import EjerciciosClase.Objetos.coche.Test;
 
-import java.util.Scanner;
 /**
  * Project name: DAM20/PACKAGE_NAME
  * Filename:
@@ -15,6 +13,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         //Añadir clase
-
+        Test.start();
     }
 }
