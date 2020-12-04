@@ -78,20 +78,28 @@ public class TestCoche_Ismael_Martin {
             marca=sc.next();
             System.out.print("Introduce el modelo del coche: ");
             modelo=sc.next();
-            System.out.print("Introduce el tipo de cambio de marchas(automatico o manual): ");
-            tipo=sc.next();
-            if (tipo.equals("automatico")){
-                cambio=TipusCanvi.CanviAutomatic;
-            }else if (tipo.equals("manual")){
-                cambio=TipusCanvi.CanviManual;
-            }
-            System.out.print("Introduce si el coche es descapotable o no (Si o No): ");
-            descapotable=sc.next();
-            if (descapotable.equals("Si")){
-                capota=true;
-            }else if (descapotable.equals("No")){
-                capota=false;
-            }
+            do {
+                System.out.print("Introduce el tipo de cambio de marchas(automatico o manual): ");
+                tipo=sc.next();
+                if (tipo.equals("automatico")){
+                    cambio=TipusCanvi.CanviAutomatic;
+                }else if (tipo.equals("manual")){
+                    cambio=TipusCanvi.CanviManual;
+                }else {
+                    System.out.println("Error. Introduce 'automatico' o 'manual'");
+                }
+            }while (!tipo.equals("automatico")&&!tipo.equals("manual"));
+            do {
+                System.out.print("Introduce si el coche es descapotable o no (si o no): ");
+                descapotable=sc.next();
+                if (descapotable.equals("si")){
+                    capota=true;
+                }else if (descapotable.equals("no")){
+                    capota=false;
+                }else {
+                    System.out.println("Error. Introduce 'si' o 'no'");
+                }
+            }while (!descapotable.equals("si")&&!descapotable.equals("no"));
             coches[i]=new Coche_Ismael_Martin(marca,modelo,cambio,capota);
         }
     }
