@@ -6,19 +6,26 @@ import java.util.Scanner;
  * Project name: DAM20/EjerciciosClase.Objetos.coche
  * Filename: Test
  * Created:  03/12/2020 / 13:08
- * Description: Esta sera la clase test que comprovara nuestro ejercicio coche.
+ * Description: Esta sera la clase test que comprovara nuestro ejercicio coche. En ella tenemos un menu en la cual
+ *              podremos crear X coches y posteriormente podremos trabajar con el coche que queramos.
+ *              Cabe añadir que cada vez que entreamos en crear coches estamos creando una nueva tira
+ *              de coches machacando los anteriores.
  * Revision:
  * @Author: Ismael - fmartin@nigul.cide.es
  * @Version: 1.0
  */
 public class Test {
+    /**Declaramos como estaticos el escaner que ha ser utilizado constantemente en el codigo y
+     * el array coches para poder ser utilizado en los metodos crear coches y ver coches */
     static Scanner sc = new Scanner(System.in);
     static PRU03E02Coche_Ismael_Martin[] coches;
 
-    public static void start() {
+    /**Desde nuestro mmain llamamos al menu para que comienze nuestro programa a trabajar*/
+    public static void main(String[] args) {
         menu();
     }
-
+    /**Desde este menu podremos acceder a los metodos ver coches y crear coches, para trabajar con la actividad.
+     * Tambien podemos salir del programa. En caso de respuesta errornea volvemos a pedir un valor correcto*/
     private static void menu() {
         boolean salir = false;
         int opcion;//Opcion elejida por el user
@@ -53,7 +60,7 @@ public class Test {
             }
         }
     }
-
+    /**El metodo crear coches nos permite crear tantos coches de la clase Coche_Ismael_Martin como queramos*/
     private static void crearCoches() {
         int numCoches;
         String marca;
@@ -89,7 +96,10 @@ public class Test {
         }
 
     }
-
+    /**El metodo ver coches nos permite acceder a los metodos de la clase Coche_Ismael_Martin del objeto que le pasemos
+     * por teclado. Teniendo en cuenta que el array de coches comienza en 0
+     * Dentro de este metodo se ha tenido en cuenta la posibilidad de haber excepciones poniendo asi un try/catch para
+     * tratar esas excepciones.*/
     private static void verCoches() {
         String userIntro;
         int userOpcion;

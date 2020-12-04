@@ -13,6 +13,5 @@ import EjerciciosClase.Objetos.coche.Test;
 public class Main {
     public static void main(String[] args) {
         //Añadir clase
-        Test.start();
     }
 }

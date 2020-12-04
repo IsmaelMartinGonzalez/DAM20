@@ -20,6 +20,7 @@ public class PRU03E02Coche_Ismael_Martin extends CotxeAbstracte implements MiInt
     private int opcion;
 
     //Builder
+    /**Al constructos le añadimos un nuevo parametro que sera si el coches descapotable o no*/
     public PRU03E02Coche_Ismael_Martin(String marca, String model, TipusCanvi tipuscanvi,boolean descapotable) {
         super(marca, model, tipuscanvi);
         this.descapotable=descapotable;
