@@ -10,7 +10,7 @@ package EjerciciosClase.Objetos.coche;
  * @Author: Ismael - fmartin@nigul.cide.es
  * @Version: 1.0
  */
-public class Coche_Ismael_Martin extends CotxeAbstracte implements MiInterface {
+public class Coche_Ismael_Martin1 extends CotxeAbstracte implements MiInterface {
     //Attriubutes
     private EstatsMotorCotxe estado= EstatsMotorCotxe.Aturat;
     private EstatsMotorCotxe velocidad=EstatsMotorCotxe.Quieto;
@@ -21,7 +21,7 @@ public class Coche_Ismael_Martin extends CotxeAbstracte implements MiInterface {
 
     //Builder
     /**Al constructos le añadimos un nuevo parametro que sera si el coches descapotable o no*/
-    public Coche_Ismael_Martin(String marca, String model, TipusCanvi tipuscanvi, boolean descapotable) {
+    public Coche_Ismael_Martin1(String marca, String model, TipusCanvi tipuscanvi, boolean descapotable) {
         super(marca, model, tipuscanvi);
         this.descapotable=descapotable;
     }
