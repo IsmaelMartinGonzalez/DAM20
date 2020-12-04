@@ -1,5 +1,3 @@
-import EjerciciosClase.Objetos.coche.Test;
-
 /**
  * Project name: DAM20/PACKAGE_NAME
  * Filename:
