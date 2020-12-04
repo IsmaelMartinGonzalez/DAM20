@@ -14,11 +14,11 @@ import java.util.Scanner;
  * @Author: Ismael - fmartin@nigul.cide.es
  * @Version: 1.0
  */
-public class TestCoche_Ismael_Martin1 {
+public class TestCoche_Ismael_Martin {
     /**Declaramos como estaticos el escaner que ha ser utilizado constantemente en el codigo y
      * el array coches para poder ser utilizado en los metodos crear coches y ver coches */
     static Scanner sc = new Scanner(System.in);
-    static Coche_Ismael_Martin1[] coches;
+    static Coche_Ismael_Martin[] coches;
 
     /**Desde nuestro mmain llamamos al menu para que comienze nuestro programa a trabajar*/
     public static void main(String[] args) {
@@ -71,7 +71,7 @@ public class TestCoche_Ismael_Martin1 {
         boolean capota=false;
         System.out.println("¿Cuantos coches quieres crear?");
         numCoches=sc.nextInt();
-        coches=new Coche_Ismael_Martin1[numCoches];
+        coches=new Coche_Ismael_Martin[numCoches];
         for (int i = 0; i < numCoches; i++) {
             System.out.println("Coche numero "+i);
             System.out.print("Introduce la marca del coche: ");
@@ -92,7 +92,7 @@ public class TestCoche_Ismael_Martin1 {
             }else if (descapotable.equals("No")){
                 capota=false;
             }
-            coches[i]=new Coche_Ismael_Martin1(marca,modelo,cambio,capota);
+            coches[i]=new Coche_Ismael_Martin(marca,modelo,cambio,capota);
         }
     }
     /**El metodo ver coches nos permite acceder a los metodos de la clase Coche_Ismael_Martin del objeto que le pasemos
