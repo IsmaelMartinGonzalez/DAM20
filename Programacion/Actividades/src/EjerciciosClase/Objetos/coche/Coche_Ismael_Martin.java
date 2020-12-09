@@ -10,6 +10,9 @@ package EjerciciosClase.Objetos.coche;
  * @Author: Ismael - fmartin@nigul.cide.es
  * @Version: 1.0
  */
+
+/**Codigo de la actividad*/
+/**------------------------------------------------------------------------------------------*/
 public class Coche_Ismael_Martin extends CotxeAbstracte{
     //Attriubutes
     private EstatsMotorCotxe estado= EstatsMotorCotxe.Aturat;

@@ -8,6 +8,7 @@ package EjerciciosClase.Objetos.coche;
  * @Author: Ismael - fmartin@nigul.cide.es
  * @Version: 1.0
  */
+/**------------------------------------------------------------------------------------------*/
 public class TestCoche_Ismael_Martin {
 
     /**
