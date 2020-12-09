@@ -1,4 +1,4 @@
-package EjerciciosClase.Objetos.coche;
+package EjerciciosClase.Objetos.MisCoches;
 
 /**
  * Project name: DAM20/EjerciciosClase.Objetos.coche
