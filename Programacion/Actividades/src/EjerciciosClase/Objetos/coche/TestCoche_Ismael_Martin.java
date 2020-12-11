@@ -15,15 +15,14 @@ public class TestCoche_Ismael_Martin {
      * Desde nuestro mmain llamamos al menu para que comienze nuestro programa a trabajar
      */
     public static void main(String[] args) {
-        Coche_Ismael_Martin c1= new Coche_Ismael_Martin("Ferrari","G1",TipusCanvi.CanviManual);
+        CotxeSegonaPart_ismael_martin c1= new CotxeSegonaPart_ismael_martin("Ferrari","G1",TipusCanvi.CanviManual);
         try {
-            System.out.println(c1.getRevolucions());
-            System.out.println(c1.comprovaMotor());
-            c1.arrancarMotor();
-            System.out.println(c1.comprovaMotor());
-            System.out.println(c1.getRevolucions());
-            c1.aturarMotor();
-            System.out.println(c1.comprovaMotor());
+            c1.CanviarMarxaAutomatic('+');
+            c1.CanviarMarxaAutomatic('+');
+            c1.CanviarMarxaAutomatic('-');
+            c1.CanviarMarxaAutomatic('-');
+            c1.CanviarMarxaAutomatic('-');
+            c1.CanviarMarxaAutomatic('+');
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
