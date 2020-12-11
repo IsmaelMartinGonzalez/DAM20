@@ -1,5 +1,7 @@
 package ComputerActivitie;
 
+import java.util.ArrayList;
+
 /**
  * Project name: DAM20/PACKAGE_NAME
  * Filename:
@@ -71,5 +73,6 @@ public class Computer {
         this.ramMemory = ramMemory+os.getOsRamMemmoryRequirement();
         this.os=null;
     }
+
 
 }

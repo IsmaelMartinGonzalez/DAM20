@@ -91,10 +91,22 @@ public class OperatingSystem {
     }
 
     //Others Methods
-    public void installSoftware(Software osSoftware){
-        this.osSoftware.add(osSoftware);
+    public void installSoftware(Software osSoftware, Computer c){
+        if (c.getHardDisk()>=osSoftware.getSoftwareSpaceRequirement()&&c.getRamMemory()>=osSoftware.getSoftwareRamMemortyRquierement()){
+            this.osSoftware.add(osSoftware);
+            c.setHardDisk(c.getHardDisk()-osSoftware.getSoftwareSpaceRequirement());
+            c.setRamMemory(c.getRamMemory()-osSoftware.getSoftwareRamMemortyRquierement());
+        }else {
+            System.out.println("No hay espacio");
+        }
     }
-    public void uninstallSoftware(Software osSoftware){
+    public void uninstallSoftware(Software osSoftware,Computer c){
+            this.osSoftware.remove(osSoftware);
+            c.setHardDisk(c.getHardDisk()+osSoftware.getSoftwareSpaceRequirement());
+            c.setRamMemory(c.getRamMemory()+osSoftware.getSoftwareRamMemortyRquierement());
+    }
+
+    public void uninstallSoftware2(Software s) {
         this.osSoftware.remove(osSoftware);
     }
 }
