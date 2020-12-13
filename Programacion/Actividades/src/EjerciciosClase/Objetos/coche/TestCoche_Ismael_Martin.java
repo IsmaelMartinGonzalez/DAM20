@@ -10,21 +10,24 @@ package EjerciciosClase.Objetos.coche;
  */
 /**------------------------------------------------------------------------------------------*/
 public class TestCoche_Ismael_Martin {
-
     /**
      * Desde nuestro mmain llamamos al menu para que comienze nuestro programa a trabajar
      */
-    public static void main(String[] args) {
-        CotxeSegonaPart_ismael_martin c1= new CotxeSegonaPart_ismael_martin("Ferrari","G1",TipusCanvi.CanviManual);
+    public static void test() {
+        CotxeSegonaPart_ismael_martin c1= new CotxeSegonaPart_ismael_martin("Ferrari","G1",TipusCanvi.CanviManual,true);
         try {
-            c1.CanviarMarxaAutomatic('+');
-            c1.CanviarMarxaAutomatic('+');
-            c1.CanviarMarxaAutomatic('-');
-            c1.CanviarMarxaAutomatic('-');
-            c1.CanviarMarxaAutomatic('-');
-            c1.CanviarMarxaAutomatic('+');
+            c1.frenar();
+            c1.acelerar();
+            c1.arrancarMotor();
+            c1.acelerar();
+            System.out.println("Velocidad: "+c1.getVelocidad()+"Km/h");
+            c1.quitarCapota();
+            c1.quitarCapota();
+            c1.frenar();
+            c1.frenar();
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
     }
+
 }
