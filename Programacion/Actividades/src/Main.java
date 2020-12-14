@@ -1,5 +1,3 @@
-import EjerciciosClase.Objetos.coche.TestCoche_Ismael_Martin;
-
 /**
  * Project name: DAM20/PACKAGE_NAME
  * Filename:
@@ -13,6 +11,5 @@ import EjerciciosClase.Objetos.coche.TestCoche_Ismael_Martin;
 public class Main {
     public static void main(String[] args) {
         //Añadir clase
-        TestCoche_Ismael_Martin.test();
     }
 }

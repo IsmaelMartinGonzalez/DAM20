@@ -13,9 +13,5 @@ package EjerciciosClase.Objetos.coche;
 public enum Marchas {
     F,
     N,
-    R,
-    m1,
-    m2,
-    m3,
-    m4;
+    R;
 }

@@ -15,7 +15,7 @@ package EjerciciosClase.Objetos.coche;
 /**------------------------------------------------------------------------------------------*/
 public class Coche_Ismael_Martin extends CotxeAbstracte{
     //Attriubutes
-    protected EstatsMotorCotxe estado= EstatsMotorCotxe.Aturat;
+    private EstatsMotorCotxe estado= EstatsMotorCotxe.Aturat;
 
     //Builder
     /**Costructor de la clase*/
