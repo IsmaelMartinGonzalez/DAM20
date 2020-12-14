@@ -20,6 +20,7 @@ public class TestCoche_Ismael_Martin {
             System.out.println(c1.getRevolucions());
             System.out.println(c1.comprovaMotor());
             c1.arrancarMotor();
+            c1.arrancarMotor();
             System.out.println(c1.comprovaMotor());
             System.out.println(c1.getRevolucions());
             c1.aturarMotor();
