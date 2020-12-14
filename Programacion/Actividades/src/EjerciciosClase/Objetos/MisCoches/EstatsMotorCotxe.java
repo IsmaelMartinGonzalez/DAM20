@@ -1,4 +1,4 @@
-package EjerciciosClase.Objetos.coche;
+package EjerciciosClase.Objetos.MisCoches;
 
 public enum EstatsMotorCotxe {
     EnMarxa,
