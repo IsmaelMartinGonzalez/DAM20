@@ -19,12 +19,18 @@ public class TestCoche_Ismael_Martin {
             c1.frenar();
             c1.acelerar();
             c1.arrancarMotor();
+            c1.CanviarMarxaManual('+');
             c1.acelerar();
+            c1.CanviarMarxaManual('+');
             System.out.println("Velocidad: "+c1.getVelocidad()+"Km/h");
             c1.quitarCapota();
+            c1.CanviarMarxaManual('+');
             c1.quitarCapota();
+            c1.CanviarMarxaManual('-');
             c1.frenar();
+            c1.CanviarMarxaManual('-');
             c1.frenar();
+            c1.CanviarMarxaAutomatic('-');
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
