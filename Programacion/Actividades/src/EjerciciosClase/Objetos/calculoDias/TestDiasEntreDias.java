@@ -11,5 +11,8 @@ package EjerciciosClase.Objetos.calculoDias;
  * @Version:
  */
 public class TestDiasEntreDias {
-    DiesEntreDates_ismael_martin d1 = new DiesEntreDates_ismael_martin();
+    public static void main(String[] args) {
+        DiesEntreDates_ismael_martin d1 = new DiesEntreDates_ismael_martin();
+        d1.nombreDiesTotals('15/07/1998','25/06/2014');
+    }
 }
