@@ -13,9 +13,12 @@ public class TestCoche_Ismael_Martin {
     /**
      * Desde nuestro mmain llamamos al menu para que comienze nuestro programa a trabajar
      */
-    public static void test() {
+    public static void main(String[] args) {
         CotxeSegonaPart_ismael_martin c1= new CotxeSegonaPart_ismael_martin("Ferrari","G1",TipusCanvi.CanviManual,true);
         try {
+            System.out.println(c1.comprovaMotor());
+            c1.CanviarMarxaManual('+');
+            System.out.println(c1.getMarcha());
             c1.frenar();
             c1.acelerar();
             c1.arrancarMotor();

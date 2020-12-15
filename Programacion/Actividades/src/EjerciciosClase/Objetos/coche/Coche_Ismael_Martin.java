@@ -31,7 +31,7 @@ public class Coche_Ismael_Martin extends CotxeAbstracte{
         if (estado.equals(EstatsMotorCotxe.EnMarxa)){
             throw new Exception("El motor ya esta encendido");
         }
-        this.estado=EstatsMotorCotxe.EnMarxa;
+        this.estado= EstatsMotorCotxe.EnMarxa;
     }
     /**Comprovamos si elestado del motor si esta encendidio o no*/
     public EstatsMotorCotxe comprovaMotor() {
@@ -54,6 +54,6 @@ public class Coche_Ismael_Martin extends CotxeAbstracte{
         if (estado.equals(EstatsMotorCotxe.Aturat)){
             throw new Exception("El coche ya esta apagado");
         }
-        this.estado=EstatsMotorCotxe.Aturat;
+        this.estado= EstatsMotorCotxe.Aturat;
     }
 }
