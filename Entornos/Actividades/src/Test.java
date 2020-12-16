@@ -1,4 +1,4 @@
-import AdivinaElNumero.Av1a9;
+import AdivinaElNumero.AdivinaV1;
 
 /**
  * Project name: DAM20/PACKAGE_NAME
@@ -12,7 +12,7 @@ import AdivinaElNumero.Av1a9;
  */
 public class Test {
     public static void main(String[] args) {
-        Av1a9 adv1 = new Av1a9();
-        adv1.menu();
+        AdivinaV1 adv1 = new AdivinaV1();
+        adv1.mainMenu();
     }
 }

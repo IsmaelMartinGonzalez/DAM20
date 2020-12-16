@@ -132,7 +132,6 @@ public class CotxeSegonaPart_ismael_martin extends Coche_Ismael_Martin{
                     case '-'->{
                         if (marcha.equals(Marchas.m4)){
                             this.marcha=Marchas.m3;
-                            System.out.println("Marcha "+ this.marcha);
                         }else if (marcha.equals(Marchas.m3)){
                             this.marcha=Marchas.m2;
                         }else if (marcha.equals(Marchas.m2)){

@@ -18,8 +18,7 @@ public class TestDiasEntreDias {
             DataXS fechaFinal= new DataXS("14/08/2014");
             d1.nombreDiesTotals(fechaInicial,fechaFinal);
         }catch (Exception e){
-
+            System.out.println(e.getMessage());
         }
-
     }
 }
