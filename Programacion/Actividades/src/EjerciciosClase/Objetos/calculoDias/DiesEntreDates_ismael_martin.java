@@ -12,51 +12,90 @@ package EjerciciosClase.Objetos.calculoDias;
  */
 public class DiesEntreDates_ismael_martin extends CalcularDiesEntreDates{
     //Attriubutes
-    DataXS[] vvisiestos;
+    int diasMes;
+    int diasMesInicial;
+    int diasMesDestio;
+    int diasRestoAñoInicial;
+    int diasRestoAñoDestino;
+    boolean añoBisiesto;
+    int diasAñosCompletos;
+    int diasAñosBisiestos;
     //Builder
     public DiesEntreDates_ismael_martin() {
     }
 
     //Getters/Setters
+
     //Other Methods
     @Override
     protected int diesMes(int mes) {
-
-        return 0;
+        switch (mes){
+            case 1,3,5,7,8,10,12->{
+                this.diasMes= 31;
+            }
+            case 2->{
+                this.diasMes=28;
+            }
+            case 4,6,9,11->{
+                this.diasMes= 30;
+            }
+        }
+        return this.diasMes;
     }
 
     @Override
     protected int diesMesInicial(DataXS dataXS) {
-        return 0;
+        diasMesInicial=diesMes(dataXS.mes)-dataXS.dia;
+        return diasMesInicial;
     }
 
     @Override
     protected int diesMesDesti(DataXS dataXS) {
-        return 0;
+        int restoDia= diesMes(dataXS.mes)-dataXS.dia;
+        diasMesDestio=diesMes(dataXS.mes)-restoDia;
+        return diasMesDestio;
     }
 
     @Override
     protected int diesResteAnyInicial(DataXS datainicial) {
-        return 0;
+
+        for (int i = 0; i < 12-datainicial.mes; i++) {
+            diasRestoAñoInicial+=diesMes(datainicial.mes+i);
+        }
+        return diasRestoAñoInicial;
     }
 
     @Override
     protected int diesResteAnyDesti(DataXS datadesti) {
-        return 0;
+        for (int i = 0; i < (datadesti.mes-1); i++) {
+            diasRestoAñoDestino+=diesMes(datadesti.mes-i);
+        }
+        return diasRestoAñoDestino;
     }
 
     @Override
     protected int diesNumAnysComplets(DataXS datainicial, DataXS datadesti) {
-        return 0;
+        diasAñosCompletos=365*((datadesti.any-datainicial.any)-1);
+        return diasAñosCompletos;
     }
 
     @Override
     protected int numDiesPerAnysdeTraspas(DataXS datainicial, DataXS datadesti) {
-        return 0;
+        for (int i = 0; i < ((datadesti.any-datainicial.any)-1); i++) {
+            if (anyDeTraspas(datainicial.any+i)){
+                diasAñosBisiestos++;
+            }
+        }
+        return diasAñosBisiestos;
     }
 
     @Override
     protected boolean anyDeTraspas(int any) {
-        return false;
+        if ((any % 400 == 0) || ((any % 4 == 0) && !(any % 100 == 0))){
+            añoBisiesto= true;
+        }else{
+            añoBisiesto=false;
+        }
+        return añoBisiesto;
     }
 }

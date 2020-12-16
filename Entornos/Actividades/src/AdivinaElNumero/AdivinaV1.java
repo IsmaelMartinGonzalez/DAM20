@@ -190,7 +190,7 @@ public class AdivinaV1 {
                             }
                         }
                     }else {
-                        throw new Exception("Error. Por favvor introduce un numero entre 1 y 100");
+                        throw new Exception("Error. Por favor introduce un numero entre 1 y 100");
                     }
                 }while (!(intputPlayer==randomNum)&&!(attempts==0));
             }

@@ -4,11 +4,12 @@ package EjerciciosClase.Objetos.coche;
  * Project name: DAM20/PACKAGE_NAME
  * Filename: Coche segunda parte
  * Created:  14/11/2020 / 13:47
- * Description: Actividad
+ * Description: En esta clase se implementan los metodos de cambiar de marcha segun el tipo de coche que tengamos,
+ * tambien se han implementado metodos extras que permiten poner o quita capota segun el coche y acelerar y frenar el
+ * coche.
  * Revision:
- *
  * @Author: Ismael - fmartin@nigul.cide.es
- * @Version:
+ * @Version: 1.0
  */
 public class CotxeSegonaPart_ismael_martin extends Coche_Ismael_Martin{
 
