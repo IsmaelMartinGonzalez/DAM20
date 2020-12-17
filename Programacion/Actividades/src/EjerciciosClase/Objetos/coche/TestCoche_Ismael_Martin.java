@@ -17,23 +17,23 @@ public class TestCoche_Ismael_Martin {
         CotxeSegonaPart_ismael_martin c1= new CotxeSegonaPart_ismael_martin("Ferrari","G1",TipusCanvi.CanviManual,true);
         try {
             System.out.println(c1.comprovaMotor());
-            c1.CanviarMarxaManual('+');
+            c1.canviarMarxa('+');
             System.out.println(c1.getMarcha());
             c1.frenar();
             c1.acelerar();
             c1.arrancarMotor();
-            c1.CanviarMarxaManual('+');
+            c1.canviarMarxa('+');
             c1.acelerar();
-            c1.CanviarMarxaManual('+');
+            c1.canviarMarxa('+');
             System.out.println("Velocidad: "+c1.getVelocidad()+"Km/h");
             c1.quitarCapota();
-            c1.CanviarMarxaManual('+');
+            c1.canviarMarxa('+');
             c1.quitarCapota();
-            c1.CanviarMarxaManual('-');
+            c1.canviarMarxa('-');
             c1.frenar();
-            c1.CanviarMarxaManual('-');
+            c1.canviarMarxa('-');
             c1.frenar();
-            c1.CanviarMarxaAutomatic('-');
+            c1.canviarMarxa('-');
         }catch (Exception e){
             System.out.println(e.getMessage());
         }

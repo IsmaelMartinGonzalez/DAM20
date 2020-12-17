@@ -15,9 +15,8 @@ public class CotxeSegonaPart_ismael_martin extends Coche_Ismael_Martin{
 
     //Attributes
     private enum EstadoCoche{ Acelerando,Quieto}
-    private enum Marchas{ F,N,R,m1,m2,m3,m4}
+    private enum Marchas{ F,N,R,m1,m2,m3,m4,m5,m6}
     private Marchas marcha= Marchas.N;
-    private  char cambio;
     private EstadoCoche estadoV = CotxeSegonaPart_ismael_martin.EstadoCoche.Quieto;
     private boolean descapotable;
     private boolean capota=false;
@@ -34,9 +33,6 @@ public class CotxeSegonaPart_ismael_martin extends Coche_Ismael_Martin{
     //Getters/Setters
     public Marchas getMarcha() {
         return marcha;
-    }
-    public char getCambio() {
-        return cambio;
     }
     public EstadoCoche getEstadoV() {
         return estadoV;
@@ -59,19 +55,25 @@ public class CotxeSegonaPart_ismael_martin extends Coche_Ismael_Martin{
     }
 
     //Others Methods
+    /**Este metodo nos permitira subir o bajar de marcha en función del tipo de cambio de marcha que tenga el coche.
+     * El metodo lanzara una excepción si no se introduce el caracter correcto, '+' o '-', para cambiar de marcha.*/
+    public void canviarMarxa(char cambio) throws  Exception{
+        if (cambio=='+'|| cambio=='-'){
+            if (tipuscanvi.equals(TipusCanvi.CanviManual)){
+                canviarMarxaManual(cambio);
+            }else if (tipuscanvi.equals(TipusCanvi.CanviAutomatic)){
+                canviarMarxaAutomatic(cambio);
+            }
+        }else {
+            throw new Exception("Error. El caracter a insertar ha de ser un '+' o '-'");
+        }
+    }
+
     /** Metodo cambiar marcha automatica, permite cambiar de marcha si el coche es automatico y esta el motor encendido.
-     * En caso de no estar encendido se lanzara un mensaje indicando que se a de encender el motor.
-     * El metodo lanzara una excepción si no se introduce el caracter correcto, '+' o '-', para cambiar de marcha.
-     * En caso de no ser automatico y cambiar de marcha se lanzara una excepción indicando que no lo es.*/
-    public void CanviarMarxaAutomatic(char cambio) throws Exception{
+     * En caso de no estar encendido se lanzara un mensaje indicando que se a de encender el motor.*/
+    private void canviarMarxaAutomatic(char cambio){
         if (estado.equals(EstatsMotorCotxe.EnMarxa)){
-            if (tipuscanvi.equals(TipusCanvi.CanviAutomatic)){
-                if (cambio=='+'||cambio=='-'){
-                    this.cambio=cambio;
-                }else {
-                    throw new Exception("Por favor elige solo '+' o '-' para poder cambiar las marchas.");
-                }
-                switch (this.cambio){
+                switch (cambio){
                     case '+'->{
                         if (marcha.equals(Marchas.F)){
                             System.out.println("No hay mas marchas");
@@ -91,30 +93,16 @@ public class CotxeSegonaPart_ismael_martin extends Coche_Ismael_Martin{
                         }
                     }
                 }
-            }else {
-                throw new Exception("Tu coche no es automatico");
-            }
         }else {
             System.out.println("Por favor arranca el coche");
         }
-
-
     }
 
     /** Metodo cambiar marcha manualmente, permite cambiar de marcha si el coche es manual y esta el motor encendido.
-     * En caso de no estar encendido se lanzara un mensaje indicando que se a de encender el motor.
-     * El metodo lanzara una excepción si no se introduce el caracter correcto, '+' o '-', para cambiar de marcha.
-     * En caso de no ser manual y cambiar de marcha se lanzara una excepción indicando que no lo es.*/
-    public void CanviarMarxaManual(char cambio) throws Exception{
-        if (tipuscanvi.equals(TipusCanvi.CanviManual)){
+     * En caso de no estar encendido se lanzara un mensaje indicando que se a de encender el motor.*/
+    private void canviarMarxaManual(char cambio) throws Exception{
             if (estado.equals(EstatsMotorCotxe.EnMarxa)){
-                if (cambio=='+'||cambio=='-'){
-                    this.cambio=cambio;
-                }else {
-                    throw new Exception("Por favor elige solo '+' o '-' para poder cambiar las marchas.");
-                }
-
-                switch (this.cambio){
+                switch (cambio){
                     case '+'->{
                         if (this.marcha.equals(Marchas.R)){
                             this.marcha=Marchas.N;
@@ -127,11 +115,20 @@ public class CotxeSegonaPart_ismael_martin extends Coche_Ismael_Martin{
                         }else if (marcha.equals(Marchas.m3)){
                             this.marcha=Marchas.m4;
                         }else if (marcha.equals(Marchas.m4)){
+                            this.marcha=Marchas.m5;
+                        }else if(marcha.equals(Marchas.m5)){
+                            this.marcha=Marchas.m6;
+                        }else if (marcha.equals(Marchas.m6)){
                             System.out.println("No hay mas marchas");
+
                         }
                     }
-                    case '-'->{
-                        if (marcha.equals(Marchas.m4)){
+                    case '-'-> {
+                        if (marcha.equals(Marchas.m6)){
+                            this.marcha=Marchas.m5;
+                        }else if (marcha.equals(Marchas.m5)){
+                            this.marcha=Marchas.m4;
+                        }else if (marcha.equals(Marchas.m4)){
                             this.marcha=Marchas.m3;
                         }else if (marcha.equals(Marchas.m3)){
                             this.marcha=Marchas.m2;
@@ -149,9 +146,6 @@ public class CotxeSegonaPart_ismael_martin extends Coche_Ismael_Martin{
             }else {
                 System.out.println("Por favor arranca el motor");
             }
-        }else {
-            throw  new Exception("Tu coche no es manual");
-        }
     }
 
     /** El metodo acelerar permite acelerar el coche si el motor esta encencido.
