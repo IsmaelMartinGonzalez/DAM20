@@ -30,8 +30,6 @@ public class test {
         for (int i = 0; i < os1.getOsSoftware().size(); i++) {
             System.out.println("Programas instalados "+os1.getOsSoftware().get(i).getSoftwareName());
         }
-        c1.getOs().uninstallSoftware(s1,c1);
-        c1.getOs().uninstallSoftware(s2,c1);
         c1.format();
         System.out.println("-----------------------");
         System.out.println("Formateado");

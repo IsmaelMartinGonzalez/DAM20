@@ -13,12 +13,9 @@ package EjerciciosClase.Objetos.calculoDias;
 public class DiesEntreDates_ismael_martin extends CalcularDiesEntreDates{
     //Attriubutes
     int diasMes;
-    int diasMesInicial;
-    int diasMesDestio;
     int diasRestoAñoInicial;
     int diasRestoAñoDestino;
     boolean añoBisiesto;
-    int diasAñosCompletos;
     int diasAñosBisiestos;
     //Builder
     public DiesEntreDates_ismael_martin() {
@@ -46,16 +43,13 @@ public class DiesEntreDates_ismael_martin extends CalcularDiesEntreDates{
     /**Este metodo nos devolverá los dias que quedán hasta el final del mes de la fecha inicial.*/
     @Override
     protected int diesMesInicial(DataXS dataXS) {
-        diasMesInicial=diesMes(dataXS.mes)-dataXS.dia;
-        return diasMesInicial;
+        return diesMes(dataXS.mes)-dataXS.dia;
     }
 
     /**Este metodo nos devolverá los dias que han pasado desde el principo del mes hasta el dia 1 del mismo*/
     @Override
     protected int diesMesDesti(DataXS dataXS) {
-        int restoDia= diesMes(dataXS.mes)-dataXS.dia;
-        diasMesDestio=diesMes(dataXS.mes)-restoDia;
-        return diasMesDestio;
+        return dataXS.dia;
     }
 
     /**Este mestodo nos devolvera los dias que quedán hasta el final del año, contando desde un mes en adelante
@@ -64,7 +58,6 @@ public class DiesEntreDates_ismael_martin extends CalcularDiesEntreDates{
      * mes en adelante hasta el final del año.*/
     @Override
     protected int diesResteAnyInicial(DataXS datainicial) {
-
         for (int i = 0; i < 12-datainicial.mes; i++) {
             diasRestoAñoInicial+=diesMes(datainicial.mes+i);
         }
@@ -88,8 +81,7 @@ public class DiesEntreDates_ismael_martin extends CalcularDiesEntreDates{
      * le restamos uno*/
     @Override
     protected int diesNumAnysComplets(DataXS datainicial, DataXS datadesti) {
-        diasAñosCompletos=365*((datadesti.any-datainicial.any)-1);
-        return diasAñosCompletos;
+        return 365*((datadesti.any-datainicial.any)-1);
     }
 
     /**Este metodo nos devolverá los dias extra que hay en los años bisiestos, que haya entre las dos fechas.
@@ -112,7 +104,6 @@ public class DiesEntreDates_ismael_martin extends CalcularDiesEntreDates{
      * entre 4 y 100 da un resto de 0.*/
     @Override
     protected boolean anyDeTraspas(int any) {
-        /**.*/
         if ((any % 400 == 0) || ((any % 4 == 0) && !(any % 100 == 0))){
             añoBisiesto= true;
         }else{
