@@ -25,8 +25,8 @@ public class DiesEntreDates_ismael_martin extends CalcularDiesEntreDates{
     }
 
     //Getters/Setters
-
     //Other Methods
+    /**Este metodo nos devolverá los dias que tiene un me concreto.*/
     @Override
     protected int diesMes(int mes) {
         switch (mes){
@@ -43,12 +43,14 @@ public class DiesEntreDates_ismael_martin extends CalcularDiesEntreDates{
         return this.diasMes;
     }
 
+    /**Este metodo nos devolverá los dias que quedán hasta el final del mes de la fecha inicial.*/
     @Override
     protected int diesMesInicial(DataXS dataXS) {
         diasMesInicial=diesMes(dataXS.mes)-dataXS.dia;
         return diasMesInicial;
     }
 
+    /**Este metodo nos devolverá los dias que han pasado desde el principo del mes hasta el dia 1 del mismo*/
     @Override
     protected int diesMesDesti(DataXS dataXS) {
         int restoDia= diesMes(dataXS.mes)-dataXS.dia;
@@ -56,6 +58,10 @@ public class DiesEntreDates_ismael_martin extends CalcularDiesEntreDates{
         return diasMesDestio;
     }
 
+    /**Este mestodo nos devolvera los dias que quedán hasta el final del año, contando desde un mes en adelante
+     * desde el mes de la fecha inicial
+     * Para calcular los dias que quedan hasta el final generamos un buble, que ira sumando los dias de los meses desde un
+     * mes en adelante hasta el final del año.*/
     @Override
     protected int diesResteAnyInicial(DataXS datainicial) {
 
@@ -65,6 +71,10 @@ public class DiesEntreDates_ismael_martin extends CalcularDiesEntreDates{
         return diasRestoAñoInicial;
     }
 
+    /**Este mestodo nos devolvera los dias que quedán hasta el principio del año, contando desde un mes hacia atras
+     * desde el mes de la fecha de destino
+     * Para calcular los dias hasta el principio del año generamos un buble en la que vamos sumando los dias del mes
+     * hacia atras.*/
     @Override
     protected int diesResteAnyDesti(DataXS datadesti) {
         for (int i = 0; i < (datadesti.mes-1); i++) {
@@ -73,24 +83,36 @@ public class DiesEntreDates_ismael_martin extends CalcularDiesEntreDates{
         return diasRestoAñoDestino;
     }
 
+    /**Este metodo nos devolverá los dias que hay entre el año de inicio y el año de destino
+     * Para calcular la cantid de dia que hay entre años al año de destino le restamos el año inicial y al resultado
+     * le restamos uno*/
     @Override
     protected int diesNumAnysComplets(DataXS datainicial, DataXS datadesti) {
         diasAñosCompletos=365*((datadesti.any-datainicial.any)-1);
         return diasAñosCompletos;
     }
 
+    /**Este metodo nos devolverá los dias extra que hay en los años bisiestos, que haya entre las dos fechas.
+     * Para calcular el dia extra de un año bisiesto llamamos a anyDeTraspas para comprobar si el año es bisiesto o no.*/
     @Override
     protected int numDiesPerAnysdeTraspas(DataXS datainicial, DataXS datadesti) {
-        for (int i = 0; i < ((datadesti.any-datainicial.any)-1); i++) {
+        for (int i = 0; i <= ((datadesti.any-datainicial.any)-1); i++) {
             if (anyDeTraspas(datainicial.any+i)){
                 diasAñosBisiestos++;
             }
         }
+        if(anyDeTraspas(datadesti.any)){
+            diasAñosBisiestos++;
+        }
         return diasAñosBisiestos;
     }
 
+    /**Este metodo comprobará si el año que le pasomos es bisiesto o no
+     * Para calcular si un año es bisiesto o no, comprobamos si el año dividido entre 400 da un resto de 0 o si divido
+     * entre 4 y 100 da un resto de 0.*/
     @Override
     protected boolean anyDeTraspas(int any) {
+        /**.*/
         if ((any % 400 == 0) || ((any % 4 == 0) && !(any % 100 == 0))){
             añoBisiesto= true;
         }else{
