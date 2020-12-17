@@ -172,7 +172,7 @@ public class AdivinaV1 {
                 exit=true;
                 mainMenu();
             }else {
-                do {
+                while (!(intputPlayer==randomNum)&&!(attempts==0)) {
                     System.out.print("Espereando respuesta:");
                     intputPlayer=sc.nextInt();
                     if (intputPlayer>=1&&intputPlayer<=100){
@@ -192,7 +192,7 @@ public class AdivinaV1 {
                     }else {
                         throw new Exception("Error. Por favor introduce un numero entre 1 y 100");
                     }
-                }while (!(intputPlayer==randomNum)&&!(attempts==0));
+                }
             }
             if (attempts==0){
                 String retry;
@@ -224,7 +224,7 @@ public class AdivinaV1 {
                 exit=true;
                 mainMenu();
             }else{
-                do {
+                while (!(intputPlayer==randomNum)&&!(attempts==0)) {
                     System.out.print("Espereando respuesta:");
                     intputPlayer=sc.nextInt();
                     if (intputPlayer>=1&&intputPlayer<=10){
@@ -239,7 +239,7 @@ public class AdivinaV1 {
                     }else {
                         throw new Exception("Error. Por favor introduce un numero entre 1 y 10");
                     }
-                }while (!(intputPlayer==randomNum)&&!(attempts==0));
+                }
             }
             if (attempts==0){
                 String retry;
