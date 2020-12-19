@@ -13,10 +13,7 @@ package EjerciciosClase.Objetos.calculoDias;
 public class DiesEntreDates_ismael_martin extends CalcularDiesEntreDates{
     //Attriubutes
     int diasMes;
-    int diasRestoAñoInicial;
-    int diasRestoAñoDestino;
     boolean añoBisiesto;
-    int diasAñosBisiestos;
     //Builder
     public DiesEntreDates_ismael_martin() {
     }
@@ -58,10 +55,11 @@ public class DiesEntreDates_ismael_martin extends CalcularDiesEntreDates{
      * mes en adelante hasta el final del año.*/
     @Override
     protected int diesResteAnyInicial(DataXS datainicial) {
+        int dias=0;
         for (int i = 0; i < 12-datainicial.mes; i++) {
-            diasRestoAñoInicial+=diesMes(datainicial.mes+i);
+            dias+=diesMes(datainicial.mes+i);
         }
-        return diasRestoAñoInicial;
+        return dias;
     }
 
     /**Este mestodo nos devolvera los dias que quedán hasta el principio del año, contando desde un mes hacia atras
@@ -70,10 +68,11 @@ public class DiesEntreDates_ismael_martin extends CalcularDiesEntreDates{
      * hacia atras.*/
     @Override
     protected int diesResteAnyDesti(DataXS datadesti) {
+        int dias=0;
         for (int i = 0; i < (datadesti.mes-1); i++) {
-            diasRestoAñoDestino+=diesMes(datadesti.mes-i);
+            dias+=diesMes(datadesti.mes-i);
         }
-        return diasRestoAñoDestino;
+        return dias;
     }
 
     /**Este metodo nos devolverá los dias que hay entre el año de inicio y el año de destino
@@ -88,15 +87,16 @@ public class DiesEntreDates_ismael_martin extends CalcularDiesEntreDates{
      * Para calcular el dia extra de un año bisiesto llamamos a anyDeTraspas para comprobar si el año es bisiesto o no.*/
     @Override
     protected int numDiesPerAnysdeTraspas(DataXS datainicial, DataXS datadesti) {
+        int diasExtra=0;
         for (int i = 0; i <= ((datadesti.any-datainicial.any)-1); i++) {
             if (anyDeTraspas(datainicial.any+i)){
-                diasAñosBisiestos++;
+                diasExtra++;
             }
         }
         if(anyDeTraspas(datadesti.any)){
-            diasAñosBisiestos++;
+            diasExtra++;
         }
-        return diasAñosBisiestos;
+        return diasExtra;
     }
 
     /**Este metodo comprobará si el año que le pasomos es bisiesto o no
