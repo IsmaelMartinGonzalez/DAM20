@@ -14,9 +14,8 @@ public class TestDiasEntreDias {
     public static void main(String[] args) {
         DiesEntreDates_ismael_martin d1 = new DiesEntreDates_ismael_martin();
         try {
-            DataXS fechaInicial = new DataXS("15/07/1978");
-            DataXS fechaFinal= new DataXS("27/05/2024");
-            System.out.println(d1.numDiesPerAnysdeTraspas(fechaInicial,fechaFinal));
+            DataXS fechaInicial = new DataXS("25/08/2014");
+            DataXS fechaFinal= new DataXS("25/08/2050");
             System.out.println(d1.nombreDiesTotals(fechaInicial,fechaFinal));
         }catch (Exception e){
             System.out.println(e.getMessage());

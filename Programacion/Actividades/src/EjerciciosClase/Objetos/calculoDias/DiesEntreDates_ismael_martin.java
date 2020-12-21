@@ -11,9 +11,6 @@ package EjerciciosClase.Objetos.calculoDias;
  * @Version:
  */
 public class DiesEntreDates_ismael_martin extends CalcularDiesEntreDates{
-    //Attriubutes
-    int diasMes;
-    boolean añoBisiesto;
     //Builder
     public DiesEntreDates_ismael_martin() {
     }
@@ -23,18 +20,19 @@ public class DiesEntreDates_ismael_martin extends CalcularDiesEntreDates{
     /**Este metodo nos devolverá los dias que tiene un me concreto.*/
     @Override
     protected int diesMes(int mes) {
+        int dias=0;
         switch (mes){
             case 1,3,5,7,8,10,12->{
-                this.diasMes= 31;
+                dias= 31;
             }
             case 2->{
-                this.diasMes=28;
+                dias= 28;
             }
             case 4,6,9,11->{
-                this.diasMes= 30;
+                dias= 30;
             }
         }
-        return this.diasMes;
+        return dias;
     }
 
     /**Este metodo nos devolverá los dias que quedán hasta el final del mes de la fecha inicial.*/
@@ -104,6 +102,7 @@ public class DiesEntreDates_ismael_martin extends CalcularDiesEntreDates{
      * entre 4 y 100 da un resto de 0.*/
     @Override
     protected boolean anyDeTraspas(int any) {
+        boolean añoBisiesto;
         if ((any % 400 == 0) || ((any % 4 == 0) && !(any % 100 == 0))){
             añoBisiesto= true;
         }else{
