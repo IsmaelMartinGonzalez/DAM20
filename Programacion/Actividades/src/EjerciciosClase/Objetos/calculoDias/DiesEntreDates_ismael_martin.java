@@ -54,7 +54,7 @@ public class DiesEntreDates_ismael_martin extends CalcularDiesEntreDates{
     @Override
     protected int diesResteAnyInicial(DataXS datainicial) {
         int dias=0;
-        for (int i = 0; i < 12-datainicial.mes; i++) {
+        for (int i = 1; i <= 12-datainicial.mes; i++) {
             dias+=diesMes(datainicial.mes+i);
         }
         return dias;
@@ -67,7 +67,7 @@ public class DiesEntreDates_ismael_martin extends CalcularDiesEntreDates{
     @Override
     protected int diesResteAnyDesti(DataXS datadesti) {
         int dias=0;
-        for (int i = 0; i < (datadesti.mes-1); i++) {
+        for (int i = 1; i <= (datadesti.mes-1); i++) {
             dias+=diesMes(datadesti.mes-i);
         }
         return dias;
@@ -102,12 +102,6 @@ public class DiesEntreDates_ismael_martin extends CalcularDiesEntreDates{
      * entre 4 y 100 da un resto de 0.*/
     @Override
     protected boolean anyDeTraspas(int any) {
-        boolean añoBisiesto;
-        if ((any % 400 == 0) || ((any % 4 == 0) && !(any % 100 == 0))){
-            añoBisiesto= true;
-        }else{
-            añoBisiesto=false;
-        }
-        return añoBisiesto;
+        return (any % 400 == 0) || ((any % 4 == 0) && !(any % 100 == 0));
     }
 }
