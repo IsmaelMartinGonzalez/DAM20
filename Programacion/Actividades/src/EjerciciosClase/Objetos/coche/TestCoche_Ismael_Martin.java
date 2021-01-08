@@ -29,11 +29,13 @@ public class TestCoche_Ismael_Martin {
             c1.quitarCapota();
             c1.canviarMarxa('+');
             c1.quitarCapota();
+            System.out.println("Velocidad: "+c1.getVelocidad()+"Km/h");
             c1.canviarMarxa('-');
             c1.frenar();
             c1.canviarMarxa('-');
             c1.frenar();
             c1.canviarMarxa('-');
+            System.out.println("Velocidad: "+c1.getVelocidad()+"Km/h");
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
