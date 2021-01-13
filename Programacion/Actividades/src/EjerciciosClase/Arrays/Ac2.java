@@ -1,6 +1,7 @@
 package EjerciciosClase.Arrays;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Project name: DAM20/EjerciciosClase.Arrays
@@ -18,14 +19,24 @@ public class Ac2 {
         int valores;
         ArrayList<Integer> numeros=new ArrayList<Integer>();
         int suma=0;
+        int media=0;
+        int max=0;
         for (int i = 0; i < n; i++) {
             valores= (int)Math.floor(Math.random()*101);
             numeros.add(valores);
         }
+        System.out.println(numeros);
+        Collections.sort(numeros);
         for (int numbres:
              numeros) {
             suma+=numbres;
         }
-        System.out.println(suma);
+        media=suma/n;
+        System.out.println("Cantidadde numeros= "+n);
+        System.out.println("La sumad de los numero es = "+suma);
+        System.out.println("La media es = "+media);
+        System.out.println(numeros);
+        System.out.println(numeros.get(0));
+        System.out.println(numeros.get(n-1));
     }
 }

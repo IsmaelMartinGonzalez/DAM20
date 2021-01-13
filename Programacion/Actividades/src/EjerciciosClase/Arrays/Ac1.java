@@ -24,5 +24,6 @@ public class Ac1 {
         for (int i = 0; i < dam.size(); i++) {
             System.out.println(dam.get(i));
         }
+        System.out.println(dam);
     }
 }
