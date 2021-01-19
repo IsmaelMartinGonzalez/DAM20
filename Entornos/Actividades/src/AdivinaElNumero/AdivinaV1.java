@@ -79,7 +79,7 @@ public class AdivinaV1 {
     }
 
     //Other Methods
-    public int randomNum(){
+    private int randomNum(){
         if (menuOption==1){
             randomNum = (int)((Math.random()*10)+1);
         }else{
@@ -119,7 +119,7 @@ public class AdivinaV1 {
         }
 
     }
-    public void gameMenu(){
+    private void gameMenu(){
             boolean exit=false;
             while (!exit){
                 System.out.println("Saldo del jugador: "+playerBalance+"€\n"+
@@ -206,8 +206,8 @@ public class AdivinaV1 {
                     gameBalance++;
                     attempts++;
                 }else {
-                    endGame();
                     exit=true;
+                    endGame();
                 }
             }
         }
@@ -252,8 +252,8 @@ public class AdivinaV1 {
                     gameBalance++;
                     attempts++;
                 }else {
-                    endGame();
                     exit=true;
+                    endGame();
                 }
             }
         }
