@@ -100,9 +100,9 @@ public class AdivinaV1 {
                     "El juego consiste en adivinar el numero dentro de un rango, para adivinarlo tendras 5 \n" +
                     "intentos, tras los 5 intentos tendras que pagar un euro para recibir un intento extra.\n" +
                     "Tras Adivinar el numero recibiras un premio segun el modo de juego selecionado,Ademas hay\n" +
-                    "un bonus si se adivina el numero a la primera. Para poder iniciar el juego por favor introduce \n" +
-                    "un euro.\n"
-                    +"--------------------------------");
+                    "un bonus si se adivina el numero a la primera.\n" +
+                    "Para poder iniciar el juego por favor introduce un euro.\n"+
+                    "--------------------------------");
             System.out.print("Esperando respuesta: ");
             intputPlayer= sc.nextInt();
             if (intputPlayer==1){
