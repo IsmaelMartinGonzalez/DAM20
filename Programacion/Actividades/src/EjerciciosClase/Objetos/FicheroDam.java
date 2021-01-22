@@ -45,6 +45,7 @@ public class FicheroDam {
     public boolean escribir(String text) throws IOException {
         bw.write(text);
         bw.newLine();
+        bw.close();
         return true;
     }
     public void leer(int numlineas) throws IOException {
@@ -52,6 +53,7 @@ public class FicheroDam {
         for (int i = 0; i < numlineas; i++) {
             System.out.println(linea);
             linea=br.readLine();
+            br.close();
         }
     }
 }
