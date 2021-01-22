@@ -16,6 +16,7 @@ public class Cine {
     private int price;
     private Film film;
     private  int capacity;
+    private int balance;
     //Builder
 
     public Cine(int rows,int cols, int price, Film film) {
@@ -52,6 +53,12 @@ public class Cine {
     public void setcapacity(int capacity) {
         this.capacity = capacity;
     }
+    public int getBalance() {
+        return balance;
+    }
+    public void setBalance(int balance) {
+        this.balance += balance;
+    }
 
     /**
      * Devolvemos un sitio concreto por su fila y letra*/
@@ -83,17 +90,14 @@ public class Cine {
      * Indicamos is hay sitio en el cine, cuando hay una butaca vacia se sale de la función
      * */
     public boolean isThereRoom(){
-        boolean x=true;
         for (int i = 0; i < seats.length; i++) {
             for (int j = 0; j < seats[0].length; j++) {
                 if (!seats[i][j].occupied()) {
-                     x=true;
-                }else {
-                    x=false;
+                     return true;
                 }
             }
         }
-        return x;
+        return false;
     }
     /**
      * Indicamos si una posición concreta esta ocupada o no
