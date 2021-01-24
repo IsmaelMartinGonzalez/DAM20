@@ -34,18 +34,17 @@ public class FicheroDam {
             System.out.print("Cuantas lineas deseas leer?: ");
             int numlineas=sc.nextInt();
             leer(numlineas);
+            br.close();
         }else if (modo.equals("escritura")||modo.equals("Escritura")||modo.equals("E")||modo.equals("e")){
-            bw=new BufferedWriter(new FileWriter(nombre));
+            bw=new BufferedWriter(new FileWriter(nombre, true));
             System.out.println("Que deseas escribir: ");
-            String w=sc.next();
+            String w=sc.nextLine();
             escribir(w);
+            bw.close();
         }
-
     }
     public boolean escribir(String text) throws IOException {
-        bw.write(text);
-        bw.newLine();
-        bw.close();
+        bw.write(text+"\n");
         return true;
     }
     public void leer(int numlineas) throws IOException {
@@ -53,7 +52,6 @@ public class FicheroDam {
         for (int i = 0; i < numlineas; i++) {
             System.out.println(linea);
             linea=br.readLine();
-            br.close();
         }
     }
 }

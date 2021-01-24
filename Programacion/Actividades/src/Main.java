@@ -16,12 +16,27 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws IOException {
         //Añadir clase
+        boolean exit=false;
         Scanner sc =new Scanner(System.in);
         FicheroDam f=new FicheroDam();
+
       System.out.println("Por favor introduce la ruta del archivo: ");
-        String ruta=sc.next();
-        System.out.println("Por favor introduce si es lectura o escritura: ");
-        String modo= sc.next();
-        f.fichero(ruta,modo);
+      String ruta=sc.nextLine();
+      f.fichero(ruta,"e");
+        f.fichero(ruta,"e");
+       /* while (!exit){
+            System.out.println("1.Escritura\n" +
+                    "2.Lectura\n" +
+                    "3.Salir");
+            System.out.print("Opcion: ");
+            String modo= sc.nextLine();
+            if (modo.equals("escritura")||modo.equals("Escritura")||modo.equals("lectura")||modo.equals("Lectura")||modo.equals("l")||modo.equals("e")){
+                f.fichero(ruta,modo);
+            }else if (modo.equals("Salir")||modo.equals("salir")||modo.equals("s")){
+                exit=true;
+            }else {
+                System.out.println("Error. Vuelve a intentarlo");
+            }
+        }*/
     }
 }
