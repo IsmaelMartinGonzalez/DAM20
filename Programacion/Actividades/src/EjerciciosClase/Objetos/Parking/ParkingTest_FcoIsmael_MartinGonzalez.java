@@ -4,11 +4,9 @@ import java.util.Scanner;
 
 /**
  * Project name: DAM20/EjerciciosClase.Objetos.Parking
- * Filename:
+ * Filename:ParkingTest_FcoIsmael_MartinGonzalez
  * Created:  22/01/2021 / 18:23
  * Description:
- * Revision:
- *
  * @Author: Ismael - fmartin@nigul.cide.es
  * @Version:
  */
@@ -17,14 +15,18 @@ public class ParkingTest_FcoIsmael_MartinGonzalez {
     public static void main(String[] args) throws Exception {
         Scanner sc=new Scanner(System.in);
         String user;
+        String path;
+        //Comprobamos si hay algo en el arry de args, en caso contrario igualamos a null el path
+        if (args.length<1){
+            path=args[0];
+        }else {
+            path=null;
+        }
+        //Instanciamos un objeto de nuestra clase parking.
         Parking_FcoIsmael_MartinGonzalez p=new Parking_FcoIsmael_MartinGonzalez(50,50);
 
-        try{
-            p.llegirMatricules(args[0]);
-        }catch (Exception e){
-            System.out.println(e);
-        }
        boolean exit=false;
+        //Generamos un menu que se ira ejecuntando hasta que el usuario desee.
         while (!exit){
             System.out.println("----------------------\n"
                     +"1.Omplir parking a partir de fitxer");
@@ -40,12 +42,18 @@ public class ParkingTest_FcoIsmael_MartinGonzalez {
             try {
                 switch (opcion){
                     case 1->{
-                        p.llegirMatricules(args[0]);
+                        if (path!=null){
+                            p.llegirMatricules(path);
+                        }else {
+                            System.out.print("Path: ");
+                            user=sc.next();
+                            p.llegirMatricules(user);
+                        }
                     }
                     case 2->{
                         System.out.print("Matricula: ");
-                        user=sc.next();
-                        p.entraCotxe(user);
+                        String m=sc.next();
+                        p.entraCotxe(m);
                     }
                     case 3->{
                         System.out.print("Matricula: ");
@@ -64,8 +72,8 @@ public class ParkingTest_FcoIsmael_MartinGonzalez {
                     }
                     case 6->{
                         System.out.print("Path: ");
-                        String path=sc.next();
-                        p.guardarMatricula(path);
+                        user=sc.next();
+                        p.guardarMatricula(user);
                     }
                     case 7->{
                         exit=true;
@@ -78,45 +86,3 @@ public class ParkingTest_FcoIsmael_MartinGonzalez {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

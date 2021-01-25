@@ -60,8 +60,7 @@ public class Cine {
         this.balance += balance;
     }
 
-    /**
-     * Devolvemos un sitio concreto por su fila y letra*/
+    /**Devolvemos un sitio concreto por su fila y letra*/
     public Seats getSeat (int row, char letter){
         return seats[seats.length-row-1][letter-'A'];
     }

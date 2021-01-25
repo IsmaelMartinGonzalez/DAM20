@@ -31,11 +31,6 @@ public class Parking_FcoIsmael_MartinGonzalez {
         inicPlazas();
     }
 
-    //Getters/Setters
-    private String[] getPlazasD() {
-        return plazasD;
-    }
-
     //Other Methods
     /**Este metodo se encarga de leer y comprobar las matriculas que hay en un archivo de texto plano
      * Tambien se encargara de llenar el parking en función de las matriculas leidas
@@ -140,6 +135,7 @@ public class Parking_FcoIsmael_MartinGonzalez {
                 }
             }
         }
+        //Retornamos -1 como forma de saber si ha habido un error.
         return -1;
     }
 
@@ -201,6 +197,7 @@ public class Parking_FcoIsmael_MartinGonzalez {
                 }
             }
         }
+        //Retornamos -1 como forma de saber si ha habido un error.
         return -1;
     }
 
@@ -219,7 +216,7 @@ public class Parking_FcoIsmael_MartinGonzalez {
                 }
             }
             for (int i = 4; i < chars.length; i++) {
-                if (chars[i]<=65&&chars[i]>=90){
+                if (chars[i]>=65&&chars[i]<=90){
                 }else {
                     throw new Exception("ALERTA =====> Matrícula incorrecte.");
                 }
@@ -311,7 +308,7 @@ public class Parking_FcoIsmael_MartinGonzalez {
     public void guardarMatricula(String path) throws  Exception{
         //Comprobamos que el path es correcto.
         try {
-            bw=new BufferedWriter(new FileWriter(path,true));
+            bw=new BufferedWriter(new FileWriter(path));
         }catch (Exception e){
             throw new Exception("ALERTA =====> Fitxer incorrecte o inexistent.");
         }
@@ -375,7 +372,7 @@ public class Parking_FcoIsmael_MartinGonzalez {
                 bandera=true;
             }
         }else if (tipo.equals(TipusPlacesParking.Discapacitat)){
-            int result=(int) (getPlazasD().length*0.85);
+            int result=(int) (plazasD.length*0.85);
             if (plazasOcupadasD>result){
                 bandera=true;
             }
