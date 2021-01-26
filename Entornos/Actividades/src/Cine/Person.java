@@ -16,14 +16,15 @@ public class Person {
     private int age;
     private int balance;
     private String name;
+
     //Builder
     public Person(int age, int balance,String name){
         this.age=age;
         this.balance=balance;
         this.name=name;
     }
-    //Getters/Setters
 
+    //Getters/Setters
     public int getAge() {
         return age;
     }

@@ -26,35 +26,27 @@ public class Film {
     }
 
     //Getters/Setters
-
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
-
     public int getDuration() {
         return duration;
     }
-
     public void setDuration(int duration) {
         this.duration = duration;
     }
-
     public int getMinAge() {
         return minAge;
     }
-
     public void setMinAge(int minAge) {
         this.minAge = minAge;
     }
-
     public String getDirector() {
         return director;
     }
-
     public void setDirector(String director) {
         this.director = director;
     }
@@ -64,6 +56,6 @@ public class Film {
     @Override
     public String toString() {
         return "'"+getTitle()+"' del director "+getDirector()+", con una duración de "+getDuration()+" minutos y la edad minima es de "+
-                minAge+"años";
+                minAge+" años";
     }
 }

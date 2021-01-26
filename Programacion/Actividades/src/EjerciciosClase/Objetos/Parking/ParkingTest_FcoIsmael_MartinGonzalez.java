@@ -17,7 +17,7 @@ public class ParkingTest_FcoIsmael_MartinGonzalez {
         String user;
         String path;
         //Comprobamos si hay algo en el arry de args, en caso contrario igualamos a null el path
-        if (args.length<1){
+        if (args.length>=1){
             path=args[0];
         }else {
             path=null;
@@ -38,10 +38,10 @@ public class ParkingTest_FcoIsmael_MartinGonzalez {
             System.out.println("7.Salir\n"+
                     "----------------------");
             System.out.print("Opcion: ");
-            int opcion=sc.nextInt();
+            String opcion=sc.next();
             try {
                 switch (opcion){
-                    case 1->{
+                    case "1"->{
                         if (path!=null){
                             p.llegirMatricules(path);
                         }else {
@@ -50,32 +50,32 @@ public class ParkingTest_FcoIsmael_MartinGonzalez {
                             p.llegirMatricules(user);
                         }
                     }
-                    case 2->{
+                    case "2"->{
                         System.out.print("Matricula: ");
                         String m=sc.next();
                         p.entraCotxe(m);
                     }
-                    case 3->{
+                    case "3"->{
                         System.out.print("Matricula: ");
                         String m=sc.next();
                         p.entraCotxeDiscapacitat(m);
                     }
-                    case 4->{
+                    case "4"->{
                         System.out.print("Matricula: ");
                         String m=sc.next();
                         p.surtCotxe(m);
                     }
-                    case 5->{
+                    case "5"->{
                         System.out.print("Matricula: ");
                         String m=sc.next();
                         p.surtCotxeDiscapacitat(m);
                     }
-                    case 6->{
+                    case "6"->{
                         System.out.print("Path: ");
                         user=sc.next();
                         p.guardarMatricula(user);
                     }
-                    case 7->{
+                    case "7"->{
                         exit=true;
                     }
                     default -> System.out.println("Error.Selecciona una opción entre 1 y 7");

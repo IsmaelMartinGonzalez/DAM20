@@ -72,12 +72,18 @@ public class Parking_FcoIsmael_MartinGonzalez {
         br.close();
         /*Por ultimo recorremos nuestro array de matriculas para ir colocandolas en las plazas de nuestro parking en
         * funcion de un numero aleatorio*/
+
         for (int i = 0; i < matriculas.size(); i++) {
             int numRandom=(int) (Math.random()*2)+1;
-            if (numRandom==1){
-                entraCotxe(matriculas.get(i));
-            }else if (numRandom==2){
-                entraCotxeDiscapacitat(matriculas.get(i));
+            //Capturamos si se lanza una excepción y la mostramos como mensaje.
+            try {
+                if (numRandom==1){
+                    entraCotxe(matriculas.get(i));
+                }else if (numRandom==2){
+                    entraCotxeDiscapacitat(matriculas.get(i));
+                }
+            }catch (Exception e){
+                System.out.println(e);
             }
         }
     }
@@ -190,9 +196,9 @@ public class Parking_FcoIsmael_MartinGonzalez {
                     plazasD[i]=matricula;
                     plazasOcupadasD++;
                     //Comprobamos si llegamos al 85% de la ocupación.
-                    if (porcentCapacidad(TipusPlacesParking.Discapacitat)){
-                        throw new Exception("ALERTA =====> Ocupació de places per discapacitats supera el 85%.");
-                    }
+                        if (porcentCapacidad(TipusPlacesParking.Discapacitat)){
+                            throw new Exception("ALERTA =====> Ocupació de places per discapacitats supera el 85%.");
+                        }
                     return i;
                 }
             }
@@ -380,4 +386,3 @@ public class Parking_FcoIsmael_MartinGonzalez {
         return bandera;
     }
 }
-

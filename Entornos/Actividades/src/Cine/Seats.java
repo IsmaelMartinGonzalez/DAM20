@@ -15,14 +15,15 @@ public class Seats {
     private char letter;
     private int row;
     private Person viewer;
+
     //Builder
     public Seats(char letter, int row){
         this.letter=letter;
         this.row=row;
         this.viewer=null;//No habra nadie sentado cuando se inicie el asiento.
     }
-    //Getters/Setters
 
+    //Getters/Setters
     public char getLetter() {
         return letter;
     }
@@ -41,12 +42,11 @@ public class Seats {
     public void  setViewer(Person viewer){
         this.viewer=viewer;
     }
-    //Methods
 
+    //Methods
     public  boolean occupied(){
         return viewer !=null;
     }
-
     @Override
     public String toString() {
         if (occupied())

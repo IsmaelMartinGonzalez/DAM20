@@ -12,16 +12,22 @@ package Cine;
  */
 public class main {
     public static void main(String[] args) {
+        llenarCine();
+    }
+    public static void llenarCine(){
         long tStart,tEnd,tTotal;
         tStart=System.currentTimeMillis();
         //Creamos la pelicula a reproducir
         Film film= new Film("Pitch Black",112,13,"David Twohy");
+
         //Creamos el cine
         Cine cine=new Cine(8,9,5,film);
-        //Variable y objetos que necesitaremos para generar y colocar a loes espectadores
+
+        //Variable y objetos que necesitaremos para generar y colocar a los espectadores
         Person e;
         int row;
         char letter;
+
         //Generamos los espectadores, los asisentos y comprobamos si se les puede asignar o no.
         while (cine.isThereRoom()) {
             //Genereamos un espectador, con su edad de forma aleatorio y su dinero tambien.
@@ -29,7 +35,7 @@ public class main {
                     Resources.nombres[Resources.generarNumAleatorio(0, Resources.nombres.length - 1)]);
 
             //Generamos fila y letra
-            //Si esta libre continua si no buca de nuevo
+            //Si esta libre continua si no busca de nuevo
             do {
                 row = Resources.generarNumAleatorio(0, cine.getRows() - 1);
                 letter = (char) Resources.generarNumAleatorio('A', 'A' + (cine.getColumns())-1);
@@ -41,9 +47,9 @@ public class main {
                 cine.sit(row, letter, e); //Se sienta el especator
             }
         }
+
         System.out.println("");
         cine.show();
-        System.out.println("Total dinero ganado: "+cine.getBalance()+"€");
         tEnd=System.currentTimeMillis();
         tTotal=tEnd-tStart;
         System.out.println("Tiempo de ejecución total: "+tTotal);

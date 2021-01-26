@@ -11,14 +11,15 @@ package Cine;
  * @Version:
  */
 public class Cine {
+
     //Attriubutes
     private Seats[][] seats;
     private int price;
     private Film film;
     private  int capacity;
     private int balance;
-    //Builder
 
+    //Builder
     public Cine(int rows,int cols, int price, Film film) {
         seats = new Seats[rows][cols];
         this.price = price;
@@ -28,7 +29,6 @@ public class Cine {
     }
 
     //Getters/Setters
-
     public Seats[][] getSeats() {
         return seats;
     }
@@ -72,10 +72,9 @@ public class Cine {
     public int getColumns(){
         return seats[0].length;
     }
+
     //Other Methods
-    /**
-     * Rellena nuestras butacas dandoles fila y numero
-     * */
+    /**Rellena nuestras butacas dandoles fila y numero*/
     private void fillSeats(){
         int row = seats.length;
         for (int i = 0; i < seats.length; i++) {
@@ -85,9 +84,8 @@ public class Cine {
             row--;
         }
     }
-    /**
-     * Indicamos is hay sitio en el cine, cuando hay una butaca vacia se sale de la función
-     * */
+
+    /**Indicamos is hay sitio en el cine, cuando hay una butaca vacia se sale de la función*/
     public boolean isThereRoom(){
         for (int i = 0; i < seats.length; i++) {
             for (int j = 0; j < seats[0].length; j++) {
@@ -98,22 +96,22 @@ public class Cine {
         }
         return false;
     }
-    /**
-     * Indicamos si una posición concreta esta ocupada o no
-     * */
+
+    /**Indicamos si una posición concreta esta ocupada o no*/
     public boolean thereAreSeats(int row, char letter){
         return getSeat(row, letter).occupied();
     }
-    /**
-     * Indicamos di el espectador cumple con los requisitos para ver la pelicula*/
+
+    /**Indicamos si el espectador cumple con los requisitos para ver la pelicula*/
     public boolean youCanEnter(Person e){
         return e.haveMoney(price) && e.haveAge(film.getMinAge());
     }
-    /**
-     * El espectador se sienta en una sitio*/
+
+    /**El espectador se sienta en una sitio*/
     public  void sit (int row, char letter, Person e){
         getSeat(row,letter).setViewer(e);
     }
+
     public void show(){
         System.out.println("Información del cine\n" +
                 "Pelicula: "+film+"\n" +
@@ -124,6 +122,7 @@ public class Cine {
             }
             System.out.println("");
         }
+        System.out.println("Total dinero ganado: "+getBalance()+"€");
     }
 
 }
