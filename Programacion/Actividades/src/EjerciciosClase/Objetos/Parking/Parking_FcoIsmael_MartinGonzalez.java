@@ -249,7 +249,7 @@ public class Parking_FcoIsmael_MartinGonzalez {
 
     /**Este metodo se encarga de sacar los coches de las plazas de parking para discapacitados
      * Si se intenta sacar un coche que ya no esta en el parking saltara una excepción*/
-    public void surtCotxeDiscapacitat(String matricula) throws Exception{
+    public void surtCotxeDiscapacitats(String matricula) throws Exception{
         //Generamos el boolean para comprovar la matricula.
         boolean bandera=false;
         //Comprovamos si esta bien formada la matricula.
@@ -299,19 +299,18 @@ public class Parking_FcoIsmael_MartinGonzalez {
     }
 
     /**Este metodo se encarga de indicar cuantas plazas quedan libre en nuestro parkig según el tipo de parking*/
-    public void getPlacesLliures(TipusPlacesParking tipus){
+    public int getPlacesLliures(TipusPlacesParking tipus){
         int total=0;
         if (tipus.equals(TipusPlacesParking.Discapacitat)){
             total=plazasD.length-plazasOcupadasD;
-            System.out.println("Plazas libres: "+ total);
         }else if(tipus.equals(TipusPlacesParking.No_Discapacitat)){
             total=plazas.length-plazasOcupadas;
-            System.out.println("Plazas libres: "+total);
         }
+        return total;
     }
 
     /**Este metodo se encargara de guardar todas las matriculas del parking*/
-    public void guardarMatricula(String path) throws  Exception{
+    public void guardarMatricules(String path) throws  Exception{
         //Comprobamos que el path es correcto.
         try {
             bw=new BufferedWriter(new FileWriter(path));

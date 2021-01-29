@@ -68,12 +68,12 @@ public class ParkingTest_FcoIsmael_MartinGonzalez {
                     case "5"->{
                         System.out.print("Matricula: ");
                         String m=sc.next();
-                        p.surtCotxeDiscapacitat(m);
+                        p.surtCotxeDiscapacitats(m);
                     }
                     case "6"->{
                         System.out.print("Path: ");
                         user=sc.next();
-                        p.guardarMatricula(user);
+                        p.guardarMatricules(user);
                     }
                     case "7"->{
                         exit=true;
