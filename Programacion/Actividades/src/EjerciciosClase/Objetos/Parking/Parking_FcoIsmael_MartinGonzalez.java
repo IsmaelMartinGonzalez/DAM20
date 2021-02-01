@@ -49,23 +49,7 @@ public class Parking_FcoIsmael_MartinGonzalez {
         while (linea!=null) {
             /*Por cada linea, comprobamos que este bien formado según nuestro patron[0-9]{4}[A-Z]{3}, en caso de un error
              * el programa lanzara una excepción*/
-            if (linea.length()==7){
-                char[] chars=linea.toCharArray();
-                for (int i = 0; i < chars.length-3; i++) {
-                    if (chars[i]>=48&&chars[i]<=57){
-                    }else {
-                        throw new Exception("ALERTA =====> Matrícula incorrecte.");
-                    }
-                }
-                for (int i = 4; i < chars.length; i++) {
-                    if (chars[i]>=65&&chars[i]<=90){
-                    }else {
-                        throw new Exception("ALERTA =====> Matrícula incorrecte.");
-                    }
-                }
-            }else {
-                throw new Exception("ALERTA =====> Matrícula incorrecte.");
-            }
+                comprobarMatricula(linea);
                 matriculas.add(linea);
                 linea = br.readLine();
             }
@@ -76,14 +60,10 @@ public class Parking_FcoIsmael_MartinGonzalez {
         for (int i = 0; i < matriculas.size(); i++) {
             int numRandom=(int) (Math.random()*2)+1;
             //Capturamos si se lanza una excepción y la mostramos como mensaje.
-            try {
-                if (numRandom==1){
-                    entraCotxe(matriculas.get(i));
-                }else if (numRandom==2){
-                    entraCotxeDiscapacitat(matriculas.get(i));
-                }
-            }catch (Exception e){
-                System.out.println(e);
+            if (numRandom==1){
+                entraCotxe(matriculas.get(i));
+            }else if (numRandom==2){
+                entraCotxeDiscapacitat(matriculas.get(i));
             }
         }
     }
@@ -94,23 +74,7 @@ public class Parking_FcoIsmael_MartinGonzalez {
      * Si un coche vuleve a entrar y ya esta aparcado saltara una excepción.*/
     public int entraCotxe(String matricula) throws Exception{
         //Lo primero que hacemos es comprobar que la matricula introducida es correcta.
-        if (matricula.length()==7){
-            char[] chars= matricula.toCharArray();
-            for (int i = 0; i < chars.length-3; i++) {
-                if (chars[i]>=48&&chars[i]<=57){
-                }else {
-                    throw new Exception("ALERTA =====> Matrícula incorrecte.");
-                }
-            }
-            for (int i = 4; i < chars.length; i++) {
-                if (chars[i]>=65&&chars[i]<=90){
-                }else {
-                    throw new Exception("ALERTA =====> Matrícula incorrecte.");
-                }
-            }
-        }else {
-            throw new Exception("ALERTA =====> Matrícula incorrecte.");
-        }
+        comprobarMatricula(matricula);
         //Comprobamos si el parking esta lleno, o no.
         if (capacidad(TipusPlacesParking.No_Discapacitat)){
             throw new Exception("ALERTA =====> Parking per no discapacitats ple.");
@@ -152,23 +116,7 @@ public class Parking_FcoIsmael_MartinGonzalez {
      * Si un coche de no discapacitado entra en una plaza saltara una excepción*/
     public int entraCotxeDiscapacitat(String matricula) throws Exception {
         //Comprobamos si la matricula es correcta.
-        if (matricula.length()==7){
-            char[] chars= matricula.toCharArray();
-            for (int i = 0; i < chars.length-3; i++) {
-                if (chars[i]>=48&&chars[i]<=57){
-                }else {
-                    throw new Exception("ALERTA =====> Matrícula incorrecte.");
-                }
-            }
-            for (int i = 4; i < chars.length; i++) {
-                if (chars[i]>=65&&chars[i]<=90){
-                }else {
-                    throw new Exception("ALERTA =====> Matrícula incorrecte.");
-                }
-            }
-        }else {
-            throw new Exception("ALERTA =====> Matrícula incorrecte.");
-        }
+        comprobarMatricula(matricula);
         //Comprobamos la capacidad del parking.
         if (capacidad(TipusPlacesParking.Discapacitat)&&!(capacidad(TipusPlacesParking.No_Discapacitat))){
             throw new Exception("ALERTA =====> Parking per discapacitats ple. Ha ocupat plaça normal num: "+entraCotxe(matricula));
@@ -213,23 +161,7 @@ public class Parking_FcoIsmael_MartinGonzalez {
         //Generamos un booleano para controlar si un coche esta en el parking o no.
         boolean bandera=false;
         //Comprobamos que la matricula es correcta.
-        if (matricula.length()==7){
-            char[] chars= matricula.toCharArray();
-            for (int i = 0; i < chars.length-3; i++) {
-                if (chars[i]>=48&&chars[i]<=57){
-                }else {
-                    throw new Exception("ALERTA =====> Matrícula incorrecte.");
-                }
-            }
-            for (int i = 4; i < chars.length; i++) {
-                if (chars[i]>=65&&chars[i]<=90){
-                }else {
-                    throw new Exception("ALERTA =====> Matrícula incorrecte.");
-                }
-            }
-        }else {
-            throw new Exception("ALERTA =====> Matrícula incorrecte.");
-        }
+        comprobarMatricula(matricula);
         //Comprobamos si la matricula esta o no en el parking.
         for (int i = 0; i < plazas.length; i++) {
             if (plazas[i].equals(matricula)){
@@ -253,23 +185,7 @@ public class Parking_FcoIsmael_MartinGonzalez {
         //Generamos el boolean para comprovar la matricula.
         boolean bandera=false;
         //Comprovamos si esta bien formada la matricula.
-        if (matricula.length()==7){
-            char[] chars= matricula.toCharArray();
-            for (int i = 0; i < chars.length-3; i++) {
-                if (chars[i]>=48&&chars[i]<=57){
-                }else {
-                    throw new Exception("ALERTA =====> Matrícula incorrecte.");
-                }
-            }
-            for (int i = 4; i < chars.length; i++) {
-                if (chars[i]>=65&&chars[i]<=90){
-                }else {
-                    throw new Exception("ALERTA =====> Matrícula incorrecte.");
-                }
-            }
-        }else {
-            throw new Exception("ALERTA =====> Matrícula incorrecte.");
-        }
+        comprobarMatricula(matricula);
         //Comprovamos si esta en el parking o no.
         for (int i = 0; i < plazasD.length; i++) {
             if (plazasD[i].equals(matricula)){
@@ -383,5 +299,26 @@ public class Parking_FcoIsmael_MartinGonzalez {
             }
         }
         return bandera;
+    }
+
+    /**Comprueba la matricula*/
+    private void comprobarMatricula(String matricula) throws Exception {
+        if (matricula.length()==7){
+            char[] chars=matricula.toCharArray();
+            for (int i = 0; i < chars.length-3; i++) {
+                if (chars[i]>=48&&chars[i]<=57){
+                }else {
+                    throw new Exception("ALERTA =====> Matrícula incorrecte.");
+                }
+            }
+            for (int i = 4; i < chars.length; i++) {
+                if (chars[i]>=65&&chars[i]<=90){
+                }else {
+                    throw new Exception("ALERTA =====> Matrícula incorrecte.");
+                }
+            }
+        }else {
+            throw new Exception("ALERTA =====> Matrícula incorrecte.");
+        }
     }
 }
