@@ -1,4 +1,5 @@
 import AdivinaElNumero.AdivinaV1;
+import Bingo.Main;
 
 /**
  * Project name: DAM20/PACKAGE_NAME
@@ -12,7 +13,6 @@ import AdivinaElNumero.AdivinaV1;
  */
 public class Test {
     public static void main(String[] args) {
-        AdivinaV1 adv1 = new AdivinaV1();
-        adv1.mainMenu();
+        Main.play();
     }
 }
