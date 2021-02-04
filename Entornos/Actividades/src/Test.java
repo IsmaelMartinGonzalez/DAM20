@@ -13,6 +13,6 @@ import Bingo.Main;
  */
 public class Test {
     public static void main(String[] args) {
-        Main.play();
+        Main.jugar();
     }
 }

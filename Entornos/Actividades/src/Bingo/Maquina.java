@@ -15,12 +15,12 @@ import java.util.ArrayList;
 public class Maquina {
     //Attriubutes
     private ArrayList<Integer> bolas;
-    private int bola;
+    int bola;
 
     //Builder
 
     public Maquina() {
-        this.bolas = new ArrayList<>();
+        this.bolas = new ArrayList<Integer>(99);
     }
 
     //Getters/Setters
@@ -43,17 +43,17 @@ public class Maquina {
 
     //Other Methods
     public int generarBola(){
-        int bola= Resources.generarNumAleatorio(1,99);
-        for (int i = 0; i < bolas.size(); i++) {
-            if (bola==bolas.get(i)){
-                bola=Resources.generarNumAleatorio(1,99);
-            }
+        this.bola =Resources.generarNumAleatorio(1,99);
+        if (bolas.contains(this.bola)){
+            generarBola();
+        }else {
+            bolas.add(bola);
+            return bola;
         }
-        setBola(bola);
-        bolas.add(bola);
-        return bola;
+        return -1;
     }
-    public boolean comprobarGanador(Cartulina jugador) {
+
+    public boolean compararNumBola(Cartulina jugador) {
         int contador = 0;
         if (jugador.cartulinaLLena()) {
             for (int i = 0; i < bolas.size(); i++) {
@@ -69,17 +69,5 @@ public class Maquina {
         }
         return false;
     }
-    /*public  void jugar(){
-        for (int i = 0; i < 99; i++) {
-            generarBola();
-            if (jugador.cartulinaLLena()){
-                break;
-            }
-        }
-        while (!jugador.cartulinaLLena()){
-            generarBola();
-            jugador.maracrCartulina(getBola());
-        }
-    }*/
 
 }

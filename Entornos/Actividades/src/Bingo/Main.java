@@ -11,17 +11,37 @@ package Bingo;
  * @Version:
  */
 public class Main {
-    public static void play() {
-        Maquina m=new Maquina();
-        Cartulina p1 = new Cartulina("Juan");
-        Cartulina p2 = new Cartulina("Maria");
-        p1.getCartulina();
-        m.generarBola();
-        m.getBola();
-        p1.maracrCartulina(m.getBola());
-        m.generarBola();
-        m.comprobarGanador(p1);
-        m.comprobarGanador(p2);
+    static Maquina m=new Maquina();
+    static Cartulina p1 = new Cartulina("Juan");
+    static Cartulina p2 = new Cartulina("Maria");
+
+    public static void jugar(){
+        intro();
+        while (!p1.cartulinaLLena()&&!p2.cartulinaLLena()){
+            m.generarBola();
+            p1.maracrCartulina(m.getBola());
+            p2.maracrCartulina(m.getBola());
+        }
+        System.out.println(m.getBolas());
+        comprobarGanador();
+    }
+
+    private static void comprobarGanador() {
+        if (p1.cartulinaLLena()){
+            if (m.compararNumBola(p1)){
+                System.out.println("Jugador 1 Gana!");
+            }
+        }
+        if (p2.cartulinaLLena()){
+            if (m.compararNumBola(p2)){
+                System.out.println("Jugador 2 Gana!");
+            }
+        }
+    }
+    private static void intro(){
+        System.out.println("Bingo!\n" +
+                p1.toString()+"\n" +
+                p2.toString());
     }
 
 }

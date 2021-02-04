@@ -1,5 +1,7 @@
 package Bingo;
 
+import java.util.Arrays;
+
 /**
  * Project name: DAM20/Bingo
  * Filename:
@@ -57,9 +59,10 @@ public class Cartulina {
             for (int j = 0; j < cartulina.length; j++) {
                 if (cartulina[j]==num){
                     num=Resources.generarNumAleatorio(1,99);
+                }else {
+                    cartulina[i]=num;
                 }
             }
-            cartulina[i]=num;
         }
     }
     public void maracrCartulina(int bola){
@@ -80,5 +83,10 @@ public class Cartulina {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Cartulina de "+nombre+": "+Arrays.toString(cartulina);
     }
 }
