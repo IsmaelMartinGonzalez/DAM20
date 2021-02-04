@@ -69,7 +69,7 @@ public class Maquina {
         }
         return false;
     }
-    public  void jugar(){
+    /*public  void jugar(){
         for (int i = 0; i < 99; i++) {
             generarBola();
             if (jugador.cartulinaLLena()){
@@ -80,6 +80,6 @@ public class Maquina {
             generarBola();
             jugador.maracrCartulina(getBola());
         }
-    }
+    }*/
 
 }
