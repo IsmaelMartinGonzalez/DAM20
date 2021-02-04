@@ -44,12 +44,14 @@ public class Maquina {
     //Other Methods
     public int generarBola(){
         this.bola =Resources.generarNumAleatorio(1,99);
+
         if (bolas.contains(this.bola)){
             generarBola();
         }else {
             bolas.add(bola);
             return bola;
         }
+
         return -1;
     }
 

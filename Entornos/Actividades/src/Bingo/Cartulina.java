@@ -65,6 +65,7 @@ public class Cartulina {
             }
         }
     }
+
     public void maracrCartulina(int bola){
         for (int i = 0; i < cartulina.length; i++) {
             if (cartulina[i]==bola){
@@ -72,6 +73,7 @@ public class Cartulina {
             }
         }
     }
+
     public boolean cartulinaLLena(){
         int cont=0;
         for (int i = 0; i < marcas.length; i++) {

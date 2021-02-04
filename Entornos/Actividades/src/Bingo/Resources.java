@@ -15,6 +15,5 @@ public class Resources {
     public static int generarNumAleatorio(int min, int max){
         int num= (int)(Math.random()*(min-(max+1))+(max+1));
         return num;
-
     }
 }

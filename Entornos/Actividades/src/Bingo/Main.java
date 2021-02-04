@@ -17,11 +17,13 @@ public class Main {
 
     public static void jugar(){
         intro();
+
         while (!p1.cartulinaLLena()&&!p2.cartulinaLLena()){
             m.generarBola();
             p1.maracrCartulina(m.getBola());
             p2.maracrCartulina(m.getBola());
         }
+
         System.out.println(m.getBolas());
         comprobarGanador();
     }
@@ -32,6 +34,7 @@ public class Main {
                 System.out.println("Jugador 1 Gana!");
             }
         }
+
         if (p2.cartulinaLLena()){
             if (m.compararNumBola(p2)){
                 System.out.println("Jugador 2 Gana!");
