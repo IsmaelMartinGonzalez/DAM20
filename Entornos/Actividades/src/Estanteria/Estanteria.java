@@ -1,9 +1,7 @@
 package Estanteria;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-
 /**
  * Project name: DAM20/PACKAGE_NAME
  * Filename:
@@ -13,7 +11,7 @@ import java.util.Collections;
  */
 public class Estanteria {
 //Attributes
-    ArrayList<Juego> estanteria;
+    private ArrayList<Juego> estanteria;
 //Builder
 
     public Estanteria() {
@@ -22,18 +20,27 @@ public class Estanteria {
     }
 
 //Getters/Setters
-//Others Methods
+
+    public ArrayList<Juego> getEstanteria() {
+        return estanteria;
+    }
+
+    public void setEstanteria(ArrayList<Juego> estanteria) {
+        this.estanteria = estanteria;
+    }
+
+    //Others Methods
     private void iniciarEstanteria(){
         for (int i = 0; i < 10; i++) {
-            estanteria.add(null);
+            estanteria.add(new Juego("","",0));
         }
     }
     public void meterJuego(int posicion, Juego j) throws Exception {
-        if (estanteria.contains(null)){
+        if (estanteria.get(posicion).getCalificación()==0){
             if (estanteria.contains(j)){
                 throw new Exception("El juego ya esta en la estanteria");
             }else {
-                if (estanteria.get(posicion)==null){
+                if (estanteria.get(posicion).getCalificación()==0){
                     estanteria.set(posicion,j);
                 }else {
                     System.out.println("error");
@@ -43,20 +50,41 @@ public class Estanteria {
             throw new Exception("Estanteria Llena!");
         }
     }
-    public void sacarJuego(int posicion, String j) throws Exception {
-        if (estanteria.contains(j)){
-            estanteria.set(posicion, null);
-        }else {
-            throw new Exception("El juego no esta en la estanteria");
-        }
-    }
-    public void top10(){
-        Juego[] top=new Juego[10];
+
+    public void sacarJuego(String j) throws Exception {
         for (int i = 0; i < estanteria.size(); i++) {
-            if (estanteria.get(i).calificación==10){
-                top[i]=estanteria.get(i);
-                Collections.sort();
+            while (estanteria.get(i).getTitulo().equals(j)){
+                estanteria.remove(i);
+                estanteria.add(new Juego("","",0));
             }
         }
     }
+
+    public void top10(){
+        ArrayList<Juego> juegos15=new ArrayList<Juego>();
+        for (int i = 0; i < estanteria.size(); i++) {
+            juegos15.add(estanteria.get(i));
+        }
+        Collections.sort(juegos15);
+        System.out.println("Top 10 juegos:");
+        for (int i = 0; i < juegos15.size(); i++) {
+            if (juegos15.get(i).getCalificación()==0){
+                System.out.println("\tTop "+(i+1)+": Vacio");
+            }else {
+                System.out.println("\tTop "+(i+1)+": "+juegos15.get(i).getTitulo());
+            }
+        }
+    }
+
+    public void verEstanteria(){
+        System.out.println("Mi estanteria de Juegos:");
+        for (int i = 0; i < estanteria.size(); i++) {
+            if (estanteria.get(i).getCalificación()==0){
+                System.out.println("\tJuego: Vacio");
+            }else{
+                System.out.println("\tJuego "+(i+1)+"-> "+estanteria.get(i).toString());
+            }
+        }
+    }
+
 }

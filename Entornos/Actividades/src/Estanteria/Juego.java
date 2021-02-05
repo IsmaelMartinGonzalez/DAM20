@@ -1,5 +1,4 @@
 package Estanteria;
-
 /**
  * Project name: DAM20/PACKAGE_NAME
  * Filename:
@@ -10,11 +9,11 @@ package Estanteria;
  * @Author: Ismael - fmartin@nigul.cide.es
  * @Version:
  */
-public class Juego {
+public class Juego implements Comparable<Juego>{
 //Attributes
-    String titulo;
-    String compañia;
-    int calificación;
+    private String titulo;
+    private String compañia;
+    private Integer calificación;
 
 //Builder
     public Juego(String titulo, String compañia, int calificación) {
@@ -44,4 +43,21 @@ public class Juego {
     }
 
 //Others Methods
+@Override
+public int compareTo(Juego o) {
+    if (o.getCalificación()<calificación){
+        return -1;
+    }else if (o.calificación<calificación){
+        return 0;
+    }else {
+        return 1;
+    }
+}
+
+    @Override
+    public String toString() {
+        return "titulo: '" + titulo + '\'' +
+                ", compañia: '" + compañia + '\'' +
+                ", calificación: " + calificación;
+    }
 }
