@@ -59,7 +59,6 @@ public class Parking_FcoIsmael_MartinGonzalez {
 
         for (int i = 0; i < matriculas.size(); i++) {
             int numRandom=(int) (Math.random()*2)+1;
-            //Capturamos si se lanza una excepción y la mostramos como mensaje.
             if (numRandom==1){
                 entraCotxe(matriculas.get(i));
             }else if (numRandom==2){
@@ -99,7 +98,7 @@ public class Parking_FcoIsmael_MartinGonzalez {
                     }
                     //Tras asignar la posición comprobamos si se ha llegado al 85% de capacidad.
                     if (porcentCapacidad(TipusPlacesParking.No_Discapacitat)){
-                        throw new Exception("ALERTA =====> Ocupació de places per discapacitats supera el 85%.");
+                        throw new Exception("ALERTA =====> Ocupació de places per no discapacitats supera el 85%.");
                     }
                     return i;
                 }
@@ -119,7 +118,7 @@ public class Parking_FcoIsmael_MartinGonzalez {
         comprobarMatricula(matricula);
         //Comprobamos la capacidad del parking.
         if (capacidad(TipusPlacesParking.Discapacitat)&&!(capacidad(TipusPlacesParking.No_Discapacitat))){
-            throw new Exception("ALERTA =====> Parking per discapacitats ple. Ha ocupat plaça normal num: "+entraCotxe(matricula));
+            throw new Exception("ALERTA =====> Parking per discapacitats ple. Ha ocupat plaça normal num: "+ entraCotxe(matricula));
         }else if (capacidad(TipusPlacesParking.Discapacitat)){
             throw new Exception("ALERTA =====> Parking per discapacitats ple.");
         }else {
@@ -285,16 +284,17 @@ public class Parking_FcoIsmael_MartinGonzalez {
     }
 
     /**Este meto privado se encarga de calcular el cuando hay un volumen de coches superior al 85%*/
-    private boolean porcentCapacidad(TipusPlacesParking tipo) throws Exception {
+    private boolean porcentCapacidad(TipusPlacesParking tipo) {
         boolean bandera=false;
         if (tipo.equals(TipusPlacesParking.No_Discapacitat)){
             int result=(int)(plazas.length*0.85);
-            if (plazasOcupadas>result){
+            if (plazasOcupadas>=result){
                 bandera=true;
             }
-        }else if (tipo.equals(TipusPlacesParking.Discapacitat)){
+        }
+        if (tipo.equals(TipusPlacesParking.Discapacitat)){
             int result=(int) (plazasD.length*0.85);
-            if (plazasOcupadasD>result){
+            if (plazasOcupadasD>=result){
                 bandera=true;
             }
         }

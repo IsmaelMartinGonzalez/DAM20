@@ -36,18 +36,15 @@ public class Estanteria {
         }
     }
     public void meterJuego(int posicion, Juego j) throws Exception {
-        if (estanteria.get(posicion).getCalificación()==0){
-            if (estanteria.contains(j)){
-                throw new Exception("El juego ya esta en la estanteria");
-            }else {
-                if (estanteria.get(posicion).getCalificación()==0){
-                    estanteria.set(posicion,j);
-                }else {
-                    System.out.println("error");
-                }
-            }
+        if (estanteria.contains(j)){
+            throw new Exception("El juego ya esta en la estanteria");
+
         }else {
-            throw new Exception("Estanteria Llena!");
+            if (estanteria.get(posicion).getCalificación()==0){
+                estanteria.set(posicion,j);
+            }else {
+                throw new Exception("Posición llena!");
+            }
         }
     }
 
@@ -61,17 +58,17 @@ public class Estanteria {
     }
 
     public void top10(){
-        ArrayList<Juego> juegos15=new ArrayList<Juego>();
+        ArrayList<Juego> top10=new ArrayList<Juego>();
         for (int i = 0; i < estanteria.size(); i++) {
-            juegos15.add(estanteria.get(i));
+            top10.add(estanteria.get(i));
         }
-        Collections.sort(juegos15);
+        Collections.sort(top10);
         System.out.println("Top 10 juegos:");
-        for (int i = 0; i < juegos15.size(); i++) {
-            if (juegos15.get(i).getCalificación()==0){
+        for (int i = 0; i < top10.size(); i++) {
+            if (top10.get(i).getCalificación()==0){
                 System.out.println("\tTop "+(i+1)+": Vacio");
             }else {
-                System.out.println("\tTop "+(i+1)+": "+juegos15.get(i).getTitulo());
+                System.out.println("\tTop "+(i+1)+": "+top10.get(i).getTitulo());
             }
         }
     }
