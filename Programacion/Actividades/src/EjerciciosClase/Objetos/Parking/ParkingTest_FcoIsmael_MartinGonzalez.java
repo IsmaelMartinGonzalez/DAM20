@@ -23,7 +23,7 @@ public class ParkingTest_FcoIsmael_MartinGonzalez {
             path=null;
         }
         //Instanciamos un objeto de nuestra clase parking.
-        Parking_MiguelAngel_Torres p=new Parking_MiguelAngel_Torres(50,50);
+        Parking_FcoIsmael_MartinGonzalez p=new Parking_FcoIsmael_MartinGonzalez(50,50);
 
        boolean exit=false;
         //Generamos un menu que se ira ejecuntando hasta que el usuario desee.
@@ -83,10 +83,7 @@ public class ParkingTest_FcoIsmael_MartinGonzalez {
             }catch (Exception e){
                 System.out.println(e);
             }
-            System.out.println(p.getPlacesLliures(TipusPlacesParking.No_Discapacitat));
-            System.out.println(p.getPlacesLliures(TipusPlacesParking.Discapacitat));
-            System.out.println(p.getPlacesOcupades(TipusPlacesParking.Discapacitat));
-            System.out.println(p.getPlacesOcupades(TipusPlacesParking.No_Discapacitat));
+
 
         }
     }
