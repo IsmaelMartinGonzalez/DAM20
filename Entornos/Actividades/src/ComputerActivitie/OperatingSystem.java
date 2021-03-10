@@ -21,8 +21,8 @@ public class OperatingSystem {
     private int osSpaceRequieremnt;
     private int osRamMemmoryRequirement;
     private ArrayList<Software> osSoftware = new ArrayList<Software>();
-    //Builder
 
+    //Builder
     public OperatingSystem(String osName, String osVersion, String osArchitecture, boolean osOnlyCommand, int osSpaceRequieremnt, int osRamMemmoryRequirement) {
         this.osName = osName;
         this.osVersion = osVersion;
@@ -37,55 +37,42 @@ public class OperatingSystem {
     public String getOsName() {
         return osName;
     }
-
     public void setOsName(String osName) {
         this.osName = osName;
     }
-
     public String getOsVersion() {
         return osVersion;
     }
-
     public void setOsVersion(String osVersion) {
         this.osVersion = osVersion;
     }
-
     public String getOsArchitecture() {
         return osArchitecture;
     }
-
     public void setOsArchitecture(String osArchitecture) {
         this.osArchitecture = osArchitecture;
     }
-
     public boolean isOsOnlyCommand() {
         return osOnlyCommand;
     }
-
     public void setOsOnlyCommand(boolean osOnlyCommand) {
         this.osOnlyCommand = osOnlyCommand;
     }
-
     public int getOsSpaceRequieremnt() {
         return osSpaceRequieremnt;
     }
-
     public void setOsSpaceRequieremnt(int osSpaceRequieremnt) {
         this.osSpaceRequieremnt = osSpaceRequieremnt;
     }
-
     public int getOsRamMemmoryRequirement() {
         return osRamMemmoryRequirement;
     }
-
     public void setOsRamMemmoryRequirement(int osRamMemmoryRequirement) {
         this.osRamMemmoryRequirement = osRamMemmoryRequirement;
     }
-
     public ArrayList<Software> getOsSoftware() {
         return osSoftware;
     }
-
     public void setOsSoftware(ArrayList<Software> osSoftware) {
         this.osSoftware = osSoftware;
     }
@@ -104,9 +91,5 @@ public class OperatingSystem {
             this.osSoftware.remove(osSoftware);
             c.setHardDisk(c.getHardDisk()+osSoftware.getSoftwareSpaceRequirement());
             c.setRamMemory(c.getRamMemory()+osSoftware.getSoftwareRamMemortyRquierement());
-    }
-
-    public void uninstallSoftware2(Software s) {
-        this.osSoftware.remove(osSoftware);
     }
 }
