@@ -49,7 +49,6 @@ public class Actividad3 {
     private static void compraVentas() {
         boolean salir = false;
         int opcion;
-
         while (!salir){
             System.out.println("Opcion 1: Gestion de pedidios");
             System.out.println("Opcion 2: Ver estadisticas y graficos");
