@@ -69,7 +69,7 @@ public class GestorBD {
 
     //Convierte una fecha de tipo Date en una de tipo Date de mySQL.
     public Date covert(java.util.Date data){
-        Date dataSql=new Date(data.getTime()+15);
+        Date dataSql=new Date(data.getTime());
         return dataSql;
     }
 
