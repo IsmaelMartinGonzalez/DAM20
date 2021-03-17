@@ -73,9 +73,9 @@ public class GestorBD {
     public void afegirEncarrec(Encarrec e,String producte, int quantitat)throws Exception{
         Statement update=conn.createStatement();
         String valors = e.getId()+", '"+e.getData()+"','"+e.getIdClient()+"'";
-        update.executeUpdate("INSERT  INTO ENCARRECS VALUE ("+valors+")");
         //Añadimos el encargo con su producto
         afegirEncarrecProducte(e.getId(),producte,quantitat);
+        update.executeUpdate("INSERT  INTO ENCARRECS VALUE ("+valors+")");
     }
     public void afegirProducte(Producte p)throws Exception{
         Statement update= conn.createStatement();
