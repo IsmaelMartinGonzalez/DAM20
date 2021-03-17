@@ -15,12 +15,13 @@ public class GestorEncarrecs {
 //Attributes
     GestorBD gestor;
     BufferedReader entrada;
+
 //Builder
     public GestorEncarrecs() throws Exception{
         gestor=new GestorBD();
         entrada=new BufferedReader(new InputStreamReader(System.in));
     }
-//Getters/Setters
+
 //Others Methods
     public void start() throws Exception{
         int opcio;
@@ -32,6 +33,9 @@ public class GestorEncarrecs {
                         break;
                     case 2:
                         afegirClient();
+                        break;
+                    case 3:
+                        afegirEncarrec();
                         break;
                     default: mostrarDades("Opció incorrecta\n");
                 }
@@ -69,6 +73,7 @@ public class GestorEncarrecs {
         if ("".equals(linea)) return null;
         return linea;
     }
+
     //Buscar un elemento de acuerdo con su nombre
     private void cercarClient() throws Exception{
         String nom=entrarDades("Introdueix el nom del client: "); if (null==nom) return;
@@ -81,6 +86,7 @@ public class GestorEncarrecs {
             mostrarDades(c.toString()+"\n");
         }
     }
+
     //Agregar un nuevo cliente
     public void afegirClient() throws Exception{
         mostrarDades("Introdueix dades del nou client (deixaen blanc per sortir).\n");
@@ -91,6 +97,12 @@ public class GestorEncarrecs {
         int id = gestor.obtenirNouIDClient();
         gestor.afegirClient(new Client(id,nom,apostal,aelectronica,telefon));
         mostrarDades("Operació completada satisfactoriament.\n");
+    }
+    public void afegirEncarrec()throws Exception{
+        mostrarDades("Introdueix dades del nou encarrec (deixaen blac per sortir.\n)");
+        int id = gestor.obtenirNouIDEncarrec();
+
+        Date data =Date.parse(entrarDades("Data: ")); if (null==data) return;
     }
 public static void main(String[] args) throws Exception {
     GestorEncarrecs gbd=new GestorEncarrecs();

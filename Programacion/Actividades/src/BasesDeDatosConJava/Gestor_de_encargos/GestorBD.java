@@ -21,17 +21,19 @@ public class GestorBD {
         String psw="Fmartin250814";
         this.conn=DriverManager.getConnection(url,user,psw);
     }
-//Getters/Setters
+
 //Others Methods
     public void tancar () throws Exception{
         this.conn.close();
     }
     public int obtenirNouIDClient() throws Exception{
-        //Buscar ID Maximo
-        Statement cercaMaxId=conn.createStatement();
-        ResultSet rs=cercaMaxId.executeQuery("SELECT MAX(ID) FROM CLIENTS");
-        if (rs.next()) return (1+rs.getInt(1));
-        else return 1;
+        return obtenirID("CLIENTS");
+    }
+    public int obtenirNouIDEncarrec()throws Exception{
+        return obtenirID("ENCARRECS");
+    }
+    public int obtenirNouIDProducte()throws Exception{
+        return obtenirID("PRODUCTES");
     }
     public List<Client> cercarClient(String nom) throws Exception{
         Statement cerca= conn.createStatement();
@@ -42,10 +44,32 @@ public class GestorBD {
         }
         return llista;
     }
+    public List<Encarrec> cercarEncrrec(int id) throws Exception{
+        Statement cerca= conn.createStatement();
+        ResultSet rs = cerca.executeQuery("SELECT * FROM ENCARRECS WHERE ID='"+id+"'");
+        LinkedList<Encarrec> llista=new LinkedList<>();
+        while (rs.next()){
+            llista.add(new Encarrec(rs.getInt("ID"),rs.getDate("DATE"),rs.getInt("IDCLIENT")));
+        }
+        return llista;
+    }
+
     public void  afegirClient (Client c) throws Exception{
         Statement upadte= conn.createStatement();
         String valors = c.getId()+", '"+c.getNom()+"','"+c.getApostal()+"','"+c.getAelectronica()+"','"+c.getTelefon()+"'";
         upadte.executeUpdate("INSERT INTO CLIENTS VALUES("+valors+")");
     }
+    public void afegirEncarrec(Encarrec e)throws Exception{
+        Statement update=conn.createStatement();
+        String valors = e.getId()+", '"+e.getData()+"','"+e.getIdClient()+"'";
+        update.executeUpdate("INSERT  INTO ENCARRECS VALUE ("+valors+")");
+    }
 
+    private int obtenirID(String tabla)throws Exception{
+        //Buscar ID Maximo segun la tabla
+        Statement cercarMaxId= conn.createStatement();
+        ResultSet rs=cercarMaxId.executeQuery("SELECT MAX(ID) FROM "+tabla);
+        if (rs.next()) return (1+rs.getInt(1));
+        else return 1;
+    }
 }

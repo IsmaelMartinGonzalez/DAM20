@@ -1,5 +1,4 @@
 package BasesDeDatosConJava.Gestor_de_encargos;
-
 import java.util.Date;
 
 /**
@@ -16,14 +15,28 @@ public class Encarrec {
 //Attributes
     int id;
     Date data;
+    int idClient;
 //Builder
-    public Encarrec(int id, Date data){
+    public Encarrec(int id, Date data, int idClient){
         this.id=id;
         this.data=data;
+        this.idClient=idClient;
     }
-//Getters/Setters
-//Others Methods
 
+//Getters/Setters
+    public int getId() {
+        return id;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public int getIdClient() {
+        return idClient;
+    }
+
+    //Others Methods
     @Override
     public String toString() {
         return id+"\t"+data;

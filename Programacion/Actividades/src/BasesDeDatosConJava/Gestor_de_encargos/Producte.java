@@ -11,16 +11,19 @@ package BasesDeDatosConJava.Gestor_de_encargos;
  * @Version:
  */
 public class Producte {
+
 //Attributes
     int id;
     String nom;
     float preu;
+    int stock;
 
 //Builder
-    public Producte(int id,String nom, float preu){
+    public Producte(int id,String nom, float preu,int stock){
         this.id=id;
         this.nom=nom;
         this.preu=preu;
+        this.stock=stock;
     }
 
 //Getters/Setters
@@ -36,7 +39,11 @@ public class Producte {
         return preu;
     }
 
-//Others Methods
+    public int getStock() {
+        return stock;
+    }
+
+    //Others Methods
     @Override
     public String toString() {
         return id+"\t"+nom+"\t"+preu;
