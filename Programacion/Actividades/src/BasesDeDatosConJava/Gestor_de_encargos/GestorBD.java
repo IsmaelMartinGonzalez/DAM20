@@ -109,7 +109,8 @@ public class GestorBD {
     private int cercarProducte(String producte) throws Exception{
         Statement cerca= conn.createStatement();
         ResultSet rs=cerca.executeQuery("SELECT * FORM PRODUCTES WHERE NOM='"+producte+"'");
-        return rs.getInt("ID");
+        int idProducte=rs.getInt("ID");
+        return idProducte;
     }
     private void cambioDatos(int idProducte, int quantitat) throws Exception{
      Statement update= conn.createStatement();
