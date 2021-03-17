@@ -51,7 +51,7 @@ public class GestorEncarrecs {
 
     private int menuPrincilap() throws Exception {
         String menu="\nQuina acció vols realitzar?\n"+"[1] Cercar client\n"+
-                "[2] Afegir client\n"+"[3] Afegir encarrec\n"+"[0] Sortir\n"+"Opcio>";
+                "[2] Afegir client\n"+"[3] Afegir encarrec\n"+"[4] Cercar encarrec\n"+"[0] Sortir\n"+"Opcio>";
         String lin=entrarDades(menu);
         try {
             int opcio=Integer.parseInt(lin);
@@ -101,6 +101,7 @@ public class GestorEncarrecs {
             mostrarDades(e.toString()+"\n");
         }
     }
+
     //Agregar un nuevo cliente
     public void afegirClient() throws Exception{
         mostrarDades("Introdueix dades del nou client (deixaen blanc per sortir).\n");
