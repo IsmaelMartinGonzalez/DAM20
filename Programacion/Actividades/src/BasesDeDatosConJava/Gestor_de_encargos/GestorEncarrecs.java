@@ -112,17 +112,22 @@ public class GestorEncarrecs {
         gestor.afegirClient(new Client(id,nom,apostal,aelectronica,telefon));
         mostrarDades("Operació completada satisfactoriament.\n");
     }
+    //Agregar un nuevo encargo
+    //Para poder introducor fechas a la base de datos, generamos un convertidor de fechas en el gesto DB y le pasamos
+    // como parametro una fecha de tipo Date.
     public void afegirEncarrec()throws Exception{
         mostrarDades("Introdueix dades del nou encarrec (deixaen blac per sortir.)\n");
         int id = gestor.obtenirNouIDEncarrec();
+        //Le damos formato para poder introducir bien la fehca en la base de datos.
         SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Date data =format.parse(entrarDades("Data: ")); if (null==data) return;
         int idClient=Integer.parseInt(entrarDades("Id Client: ")); if (0==idClient) return;
         gestor.afegirEncarrec(new Encarrec(id,gestor.covert(data) ,idClient));
         mostrarDades("Operació completada satisfactoriament.\n");
     }
-public static void main(String[] args) throws Exception {
+    //Main
+    public static void main(String[] args) throws Exception {
     GestorEncarrecs gbd=new GestorEncarrecs();
     gbd.start();
-}
+    }
 }

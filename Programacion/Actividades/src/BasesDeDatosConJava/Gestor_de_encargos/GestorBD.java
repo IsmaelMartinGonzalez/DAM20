@@ -67,6 +67,7 @@ public class GestorBD {
         update.executeUpdate("INSERT  INTO ENCARRECS VALUE ("+valors+")");
     }
 
+    //Convierte una fecha de tipo Date en una de tipo Date de mySQL.
     public Date covert(java.util.Date data){
         Date dataSql=new Date(data.getTime());
         return dataSql;
