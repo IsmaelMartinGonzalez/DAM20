@@ -115,6 +115,7 @@ public class GestorBD {
         }
         return idProducte;
     }
+    //Revisar esto!!!
     private void cambioDatos(int idProducte, int quantitat) throws Exception{
      Statement update= conn.createStatement();
      int quantitatProducte=llistarProductes().indexOf(idProducte);
