@@ -113,7 +113,7 @@ public class GestorEncarrecs {
         mostrarDades("Operació completada satisfactoriament.\n");
     }
     public void afegirEncarrec()throws Exception{
-        mostrarDades("Introdueix dades del nou encarrec (deixaen blac per sortir.\n)");
+        mostrarDades("Introdueix dades del nou encarrec (deixaen blac per sortir.)\n");
         int id = gestor.obtenirNouIDEncarrec();
         SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
         Date data =format.parse(entrarDades("Data: ")); if (null==data) return;
