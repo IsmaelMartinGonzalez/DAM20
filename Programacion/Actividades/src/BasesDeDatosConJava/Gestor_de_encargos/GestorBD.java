@@ -106,11 +106,14 @@ public class GestorBD {
         cambioDatos(idProducte,quantitat);
     }
     //Buscamos un producto en concreto.
-    private void cercarProducte(String producte) throws Exception{
+    private int cercarProducte(String producte) throws Exception{
+        int idProducte=0;
         Statement cerca= conn.createStatement();
         ResultSet rs=cerca.executeQuery("SELECT * FORM PRODUCTES WHERE NOM='"+producte+"'");
-        int idProducte=rs.getInt("ID");
-        System.out.println(idProducte);
+        while (rs.next()){
+            idProducte=rs.getInt("ID");
+        }
+        return idProducte;
     }
     private void cambioDatos(int idProducte, int quantitat) throws Exception{
      Statement update= conn.createStatement();
