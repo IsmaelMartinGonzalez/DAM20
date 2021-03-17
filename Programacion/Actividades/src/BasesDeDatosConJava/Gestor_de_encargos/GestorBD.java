@@ -51,7 +51,7 @@ public class GestorBD {
         ResultSet rs = cerca.executeQuery("SELECT * FROM ENCARRECS WHERE ID='"+id+"'");
         LinkedList<Encarrec> llista=new LinkedList<>();
         while (rs.next()){
-            llista.add(new Encarrec(rs.getInt("ID"),rs.getTimestamp("DATE"),rs.getInt("IDCLIENT")));
+            llista.add(new Encarrec(rs.getInt("ID"),rs.getTimestamp("DATA"),rs.getInt("IDCLIENT")));
         }
         return llista;
     }
