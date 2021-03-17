@@ -1,4 +1,5 @@
 package BasesDeDatosConJava.Gestor_de_encargos;
+import java.sql.Date;
 import java.util.*;
 import java.sql.*;
 /**
@@ -35,6 +36,7 @@ public class GestorBD {
     public int obtenirNouIDProducte()throws Exception{
         return obtenirID("PRODUCTES");
     }
+
     public List<Client> cercarClient(String nom) throws Exception{
         Statement cerca= conn.createStatement();
         ResultSet rs= cerca.executeQuery("SELECT * FROM CLIENTS WHERE NOM='" + nom + "'");
@@ -65,6 +67,11 @@ public class GestorBD {
         update.executeUpdate("INSERT  INTO ENCARRECS VALUE ("+valors+")");
     }
 
+    public Date covert(java.util.Date data){
+        Date dataSql=new Date(data.getTime());
+        return dataSql;
+    }
+
     private int obtenirID(String tabla)throws Exception{
         //Buscar ID Maximo segun la tabla
         Statement cercarMaxId= conn.createStatement();
@@ -72,4 +79,5 @@ public class GestorBD {
         if (rs.next()) return (1+rs.getInt(1));
         else return 1;
     }
+
 }

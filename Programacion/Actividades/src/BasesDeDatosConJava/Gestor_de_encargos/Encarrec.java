@@ -1,5 +1,6 @@
 package BasesDeDatosConJava.Gestor_de_encargos;
-import java.util.Date;
+//import java.util.Date;
+import java.sql.Date;
 
 /**
  * Project name: DAM20/PACKAGE_NAME

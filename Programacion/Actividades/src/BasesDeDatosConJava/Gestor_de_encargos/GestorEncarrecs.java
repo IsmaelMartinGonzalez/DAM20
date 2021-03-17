@@ -115,10 +115,10 @@ public class GestorEncarrecs {
     public void afegirEncarrec()throws Exception{
         mostrarDades("Introdueix dades del nou encarrec (deixaen blac per sortir.)\n");
         int id = gestor.obtenirNouIDEncarrec();
-        SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Date data =format.parse(entrarDades("Data: ")); if (null==data) return;
         int idClient=Integer.parseInt(entrarDades("Id Client: ")); if (0==idClient) return;
-        gestor.afegirEncarrec(new Encarrec(id,data,idClient));
+        gestor.afegirEncarrec(new Encarrec(id,gestor.covert(data) ,idClient));
         mostrarDades("Operació completada satisfactoriament.\n");
     }
 public static void main(String[] args) throws Exception {
