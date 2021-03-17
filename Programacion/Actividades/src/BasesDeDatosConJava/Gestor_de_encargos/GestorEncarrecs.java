@@ -40,8 +40,10 @@ public class GestorEncarrecs {
                         break;
                     case 4:
                         cercarEncarrec();
+                        break;
                     case 5:
                         afegirProducte();
+                        break;
                     default: mostrarDades("Opció incorrecta\n");
                 }
             }catch (Exception e){
@@ -134,10 +136,13 @@ public class GestorEncarrecs {
 
     public void afegirProducte()throws Exception{
         mostrarDades("Itrodueix dades del nou producte (deixaen blac per sortir.)\n");
+
         int id= gestor.obtenirNouIDProducte();
+
         String nom=entrarDades("Nom: "); if (null==nom) return;
         float preu=Float.parseFloat(entrarDades("Preu (Sense moneda): ")); if (0==preu) return;
         int stock=Integer.parseInt(entrarDades("Stok inicial: ")); if (0==stock) return;
+
         gestor.afegirProducte(new Producte(id,nom,preu,stock));
         mostrarDades("Operació completada satisfactoriament.\n");
     }
