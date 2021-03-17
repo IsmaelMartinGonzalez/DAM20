@@ -40,6 +40,8 @@ public class GestorEncarrecs {
                         break;
                     case 4:
                         cercarEncarrec();
+                    case 5:
+                        afegirProducte();
                     default: mostrarDades("Opció incorrecta\n");
                 }
             }catch (Exception e){
@@ -51,7 +53,7 @@ public class GestorEncarrecs {
 
     private int menuPrincilap() throws Exception {
         String menu="\nQuina acció vols realitzar?\n"+"[1] Cercar client\n"+
-                "[2] Afegir client\n"+"[3] Afegir encarrec\n"+"[4] Cercar encarrec\n"+"[0] Sortir\n"+"Opcio>";
+                "[2] Afegir client\n"+"[3] Afegir encarrec\n"+"[4] Cercar encarrec\n"+"[5] Afegir producte\n"+"[0] Sortir\n"+"Opcio>";
         String lin=entrarDades(menu);
         try {
             int opcio=Integer.parseInt(lin);
@@ -91,10 +93,10 @@ public class GestorEncarrecs {
     }
 
     private void cercarEncarrec() throws Exception {
-        int id=Integer.parseInt(entrarDades("Introdueix el identificador de l'encarrec: ")); if (0==id) return;
+        int id=Integer.parseInt(entrarDades("Introdueix el identificador del Client: ")); if (0==id) return;
         List<Encarrec> llista=gestor.cercarEncrrec(id);
         Iterator it= llista.listIterator();
-        mostrarDades("El encarrec trobat es:\n"+
+        mostrarDades("Els encarrecs trobats son:\n"+
                 "-----------------------------\n");
         while (it.hasNext()){
             Encarrec e=(Encarrec) it.next();
@@ -119,11 +121,24 @@ public class GestorEncarrecs {
     public void afegirEncarrec()throws Exception{
         mostrarDades("Introdueix dades del nou encarrec (deixaen blac per sortir.)\n");
         int id = gestor.obtenirNouIDEncarrec();
+
         //Le damos formato para poder introducir bien la fehca en la base de datos.
         SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Date data =format.parse(entrarDades("Data: ")); if (null==data) return;
+
         int idClient=Integer.parseInt(entrarDades("Id Client: ")); if (0==idClient) return;
+
         gestor.afegirEncarrec(new Encarrec(id,gestor.covert(data) ,idClient));
+        mostrarDades("Operació completada satisfactoriament.\n");
+    }
+
+    public void afegirProducte()throws Exception{
+        mostrarDades("Itrodueix dades del nou producte (deixaen blac per sortir.)\n");
+        int id= gestor.obtenirNouIDProducte();
+        String nom=entrarDades("Nom: "); if (null==nom) return;
+        float preu=Float.parseFloat(entrarDades("Preu (Sense moneda): ")); if (0==preu) return;
+        int stock=Integer.parseInt(entrarDades("Stok inicial: ")); if (0==stock) return;
+        gestor.afegirProducte(new Producte(id,nom,preu,stock));
         mostrarDades("Operació completada satisfactoriament.\n");
     }
     //Main

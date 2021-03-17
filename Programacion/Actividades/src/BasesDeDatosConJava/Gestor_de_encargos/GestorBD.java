@@ -46,9 +46,9 @@ public class GestorBD {
         }
         return llista;
     }
-    public List<Encarrec> cercarEncrrec(int id) throws Exception{
+    public List<Encarrec> cercarEncrrec(int idClient) throws Exception{
         Statement cerca= conn.createStatement();
-        ResultSet rs = cerca.executeQuery("SELECT * FROM ENCARRECS WHERE ID='"+id+"'");
+        ResultSet rs = cerca.executeQuery("SELECT * FROM ENCARRECS WHERE IDCLIENT='"+idClient+"'");
         LinkedList<Encarrec> llista=new LinkedList<>();
         while (rs.next()){
             llista.add(new Encarrec(rs.getInt("ID"),rs.getTimestamp("DATA"),rs.getInt("IDCLIENT")));
@@ -65,6 +65,11 @@ public class GestorBD {
         Statement update=conn.createStatement();
         String valors = e.getId()+", '"+e.getData()+"','"+e.getIdClient()+"'";
         update.executeUpdate("INSERT  INTO ENCARRECS VALUE ("+valors+")");
+    }
+    public void afegirProducte(Producte p)throws Exception{
+        Statement update= conn.createStatement();
+        String valors= p.getId()+", '"+p.getNom()+"','"+p.getPreu()+"','"+p.getStock()+"'";
+        update.executeUpdate("INSERT INTO PRODUCTES VALUE ("+valors+")");
     }
 
     //Convierte una fecha de tipo Date en una de tipo Date de mySQL.
