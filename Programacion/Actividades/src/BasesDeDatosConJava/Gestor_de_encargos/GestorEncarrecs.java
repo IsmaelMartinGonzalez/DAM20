@@ -1,5 +1,6 @@
 package BasesDeDatosConJava.Gestor_de_encargos;
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 /**
  * Project name: DAM20/PACKAGE_NAME
@@ -37,6 +38,8 @@ public class GestorEncarrecs {
                     case 3:
                         afegirEncarrec();
                         break;
+                    case 4:
+                        cercarEncarrec();
                     default: mostrarDades("Opció incorrecta\n");
                 }
             }catch (Exception e){
@@ -48,7 +51,7 @@ public class GestorEncarrecs {
 
     private int menuPrincilap() throws Exception {
         String menu="\nQuina acció vols realitzar?\n"+"[1] Cercar client\n"+
-                "[2] Afegir client\n"+"[0] Sortir\n"+"Opcio>";
+                "[2] Afegir client\n"+"[3] Afegir encarrec\n"+"[0] Sortir\n"+"Opcio>";
         String lin=entrarDades(menu);
         try {
             int opcio=Integer.parseInt(lin);
@@ -87,6 +90,17 @@ public class GestorEncarrecs {
         }
     }
 
+    private void cercarEncarrec() throws Exception {
+        int id=Integer.parseInt(entrarDades("Introdueix el identificador de l'encarrec: ")); if (0==id) return;
+        List<Encarrec> llista=gestor.cercarEncrrec(id);
+        Iterator it= llista.listIterator();
+        mostrarDades("El encarrec trobat es:\n"+
+                "-----------------------------\n");
+        while (it.hasNext()){
+            Encarrec e=(Encarrec) it.next();
+            mostrarDades(e.toString()+"\n");
+        }
+    }
     //Agregar un nuevo cliente
     public void afegirClient() throws Exception{
         mostrarDades("Introdueix dades del nou client (deixaen blanc per sortir).\n");
@@ -101,8 +115,11 @@ public class GestorEncarrecs {
     public void afegirEncarrec()throws Exception{
         mostrarDades("Introdueix dades del nou encarrec (deixaen blac per sortir.\n)");
         int id = gestor.obtenirNouIDEncarrec();
-
-        Date data =Date.parse(entrarDades("Data: ")); if (null==data) return;
+        SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
+        Date data =format.parse(entrarDades("Data: ")); if (null==data) return;
+        int idClient=Integer.parseInt(entrarDades("Id Client: ")); if (0==idClient) return;
+        gestor.afegirEncarrec(new Encarrec(id,data,idClient));
+        mostrarDades("Operació completada satisfactoriament.\n");
     }
 public static void main(String[] args) throws Exception {
     GestorEncarrecs gbd=new GestorEncarrecs();
