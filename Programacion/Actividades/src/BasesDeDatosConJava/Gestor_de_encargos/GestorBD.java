@@ -70,10 +70,12 @@ public class GestorBD {
         String valors = c.getId()+", '"+c.getNom()+"','"+c.getApostal()+"','"+c.getAelectronica()+"','"+c.getTelefon()+"'";
         upadte.executeUpdate("INSERT INTO CLIENTS VALUES("+valors+")");
     }
-    public void afegirEncarrec(Encarrec e)throws Exception{
+    public void afegirEncarrec(Encarrec e,String producte, int quantitat)throws Exception{
         Statement update=conn.createStatement();
         String valors = e.getId()+", '"+e.getData()+"','"+e.getIdClient()+"'";
         update.executeUpdate("INSERT  INTO ENCARRECS VALUE ("+valors+")");
+        //Añadimos el encargo con su producto
+        afegirEncarrecProducte(e.getId(),producte,quantitat);
     }
     public void afegirProducte(Producte p)throws Exception{
         Statement update= conn.createStatement();
@@ -93,6 +95,26 @@ public class GestorBD {
         ResultSet rs=cercarMaxId.executeQuery("SELECT MAX(ID) FROM "+tabla);
         if (rs.next()) return (1+rs.getInt(1));
         else return 1;
+    }
+
+    //Añadimos la conexion del encargo con el producto
+    private void afegirEncarrecProducte(int idEncarrec, String producte, int quantitat) throws Exception{
+        Statement update= conn.createStatement();
+        int idProducte=cercarProducte(producte);
+        String valors = idEncarrec+",'"+idProducte+"','"+quantitat+"'";
+        update.executeUpdate("INSERT INTO ENCARRECSPRODUCTES VALUE("+valors+")");
+        cambioDatos(idProducte,quantitat);
+    }
+    //Buscamos un producto en concreto.
+    private int cercarProducte(String producte) throws Exception{
+        Statement cerca= conn.createStatement();
+        ResultSet rs=cerca.executeQuery("SELECT * FORM PRODUCTES WHERE NOM='"+producte+"'");
+        return rs.getInt("ID");
+    }
+    private void cambioDatos(int idProducte, int quantitat) throws Exception{
+     Statement update= conn.createStatement();
+     int quantitatProducte=llistarProductes().indexOf(idProducte);
+
     }
 
 }

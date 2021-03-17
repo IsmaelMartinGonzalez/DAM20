@@ -145,7 +145,10 @@ public class GestorEncarrecs {
 
         int idClient=Integer.parseInt(entrarDades("Id Client: ")); if (0==idClient) return;
 
-        gestor.afegirEncarrec(new Encarrec(id,gestor.covert(data) ,idClient));
+        String producte=entrarDades("Producte: "); if (null==producte) return;
+        int quantitat=Integer.parseInt(entrarDades("Quantitat: ")); if (0==quantitat) return;
+
+        gestor.afegirEncarrec(new Encarrec(id,gestor.covert(data),idClient),producte,quantitat);
         mostrarDades("Operació completada satisfactoriament.\n");
     }
 
