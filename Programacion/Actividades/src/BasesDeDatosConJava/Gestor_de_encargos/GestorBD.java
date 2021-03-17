@@ -55,6 +55,15 @@ public class GestorBD {
         }
         return llista;
     }
+    public List<Producte> llistarProductes() throws Exception{
+        Statement cerca= conn.createStatement();
+        ResultSet rs=cerca.executeQuery("SELECT * FROM PRODUCTES");
+        LinkedList<Producte> llista=new LinkedList<>();
+        while (rs.next()){
+            llista.add(new Producte(rs.getInt("ID"),rs.getString("NOM"),rs.getFloat("PREU"),rs.getInt("QUANTITAT")));
+        }
+        return llista;
+    }
 
     public void  afegirClient (Client c) throws Exception{
         Statement upadte= conn.createStatement();

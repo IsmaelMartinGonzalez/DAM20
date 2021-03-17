@@ -44,6 +44,9 @@ public class GestorEncarrecs {
                     case 5:
                         afegirProducte();
                         break;
+                    case 6:
+                        llistarProductes();
+                        break;
                     default: mostrarDades("Opció incorrecta\n");
                 }
             }catch (Exception e){
@@ -55,7 +58,8 @@ public class GestorEncarrecs {
 
     private int menuPrincilap() throws Exception {
         String menu="\nQuina acció vols realitzar?\n"+"[1] Cercar client\n"+
-                "[2] Afegir client\n"+"[3] Afegir encarrec\n"+"[4] Cercar encarrec\n"+"[5] Afegir producte\n"+"[0] Sortir\n"+"Opcio>";
+                "[2] Afegir client\n"+"[3] Afegir encarrec\n"+"[4] Cercar encarrec\n"+"[5] Afegir producte\n"+
+                "[6] Llistar Productes\n"+"[0] Sortir\n"+"Opcio>";
         String lin=entrarDades(menu);
         try {
             int opcio=Integer.parseInt(lin);
@@ -103,6 +107,17 @@ public class GestorEncarrecs {
         while (it.hasNext()){
             Encarrec e=(Encarrec) it.next();
             mostrarDades(e.toString()+"\n");
+        }
+    }
+
+    private void llistarProductes() throws Exception{
+        List<Producte> llista=gestor.llistarProductes();
+        Iterator it= llista.listIterator();
+        mostrarDades("Productes donats de alta actualment:\n"+
+                "-----------------------------\n");
+        while (it.hasNext()){
+            Producte p=(Producte) it.next();
+            mostrarDades(p.toString()+"\n");
         }
     }
 

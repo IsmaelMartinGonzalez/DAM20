@@ -26,7 +26,9 @@ public class Producte {
         this.stock=stock;
     }
 
-//Getters/Setters
+
+
+    //Getters/Setters
     public int getId() {
         return id;
     }
