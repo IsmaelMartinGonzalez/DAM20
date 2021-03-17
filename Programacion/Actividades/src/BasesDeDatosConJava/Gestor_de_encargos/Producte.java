@@ -48,6 +48,6 @@ public class Producte {
     //Others Methods
     @Override
     public String toString() {
-        return id+"\t"+nom+"\t"+preu;
+        return id+"\t"+nom+"\t"+preu+"\t"+stock;
     }
 }
