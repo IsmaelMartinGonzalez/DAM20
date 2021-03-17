@@ -51,7 +51,7 @@ public class GestorBD {
         ResultSet rs = cerca.executeQuery("SELECT * FROM ENCARRECS WHERE ID='"+id+"'");
         LinkedList<Encarrec> llista=new LinkedList<>();
         while (rs.next()){
-            llista.add(new Encarrec(rs.getInt("ID"),rs.getDate("DATE"),rs.getInt("IDCLIENT")));
+            llista.add(new Encarrec(rs.getInt("ID"),rs.getTimestamp("DATE"),rs.getInt("IDCLIENT")));
         }
         return llista;
     }
@@ -68,8 +68,8 @@ public class GestorBD {
     }
 
     //Convierte una fecha de tipo Date en una de tipo Date de mySQL.
-    public Date covert(java.util.Date data){
-        Date dataSql=new Date(data.getTime());
+    public Timestamp covert(java.util.Date data){
+        Timestamp dataSql=new Timestamp(data.getTime());
         return dataSql;
     }
 

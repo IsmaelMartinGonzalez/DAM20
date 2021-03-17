@@ -1,6 +1,6 @@
 package BasesDeDatosConJava.Gestor_de_encargos;
 //import java.util.Date;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * Project name: DAM20/PACKAGE_NAME
@@ -15,10 +15,10 @@ import java.sql.Date;
 public class Encarrec {
 //Attributes
     int id;
-    Date data;
+    Timestamp data;
     int idClient;
 //Builder
-    public Encarrec(int id, Date data, int idClient){
+    public Encarrec(int id, Timestamp data, int idClient){
         this.id=id;
         this.data=data;
         this.idClient=idClient;
@@ -29,7 +29,7 @@ public class Encarrec {
         return id;
     }
 
-    public Date getData() {
+    public Timestamp getData() {
         return data;
     }
 
