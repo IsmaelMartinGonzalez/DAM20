@@ -119,7 +119,7 @@ public class GestorEncarrecs {
         mostrarDades("Introdueix dades del nou encarrec (deixaen blac per sortir.)\n");
         int id = gestor.obtenirNouIDEncarrec();
         //Le damos formato para poder introducir bien la fehca en la base de datos.
-        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd/hh:mm:ss");
         Date data =format.parse(entrarDades("Data: ")); if (null==data) return;
         int idClient=Integer.parseInt(entrarDades("Id Client: ")); if (0==idClient) return;
         gestor.afegirEncarrec(new Encarrec(id,gestor.covert(data) ,idClient));
