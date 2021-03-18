@@ -204,6 +204,8 @@ public class GestorEncarrecs {
                         cercarEncarrecReduit();
                         break;
                     default: mostrarDades("Opció incorrecta\n");
+                    case 3:
+                        return;
                 }
             }catch (Exception e){
                 mostrarDades("S'ha produit un error: "+e+"\n");
@@ -213,7 +215,7 @@ public class GestorEncarrecs {
     }
     private int textMenuEcarrec() throws Exception{
         String menu="\nSelecciona el modo de visualizació\n"+"[1] Modo Complet\n"+
-                "[2] Modo Reduit\n"+"Opcio>";
+                "[2] Modo Reduit\n"+"[3] Sortir\n"+"Opcio>";
         String lin=entrarDades(menu);
         try {
             int opcio=Integer.parseInt(lin);
