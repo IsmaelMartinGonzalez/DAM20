@@ -39,7 +39,7 @@ public class GestorEncarrecs {
                         afegirEncarrec();
                         break;
                     case 4:
-                        cercarEncarrec();
+                        menuEncarrec();
                         break;
                     case 5:
                         afegirProducte();
@@ -98,9 +98,9 @@ public class GestorEncarrecs {
         }
     }
 
-    //Buscar un encargo de acuerdo con el nombre o id del cliente
-    private void cercarEncarrec() throws Exception {
-        int id=Integer.parseInt(entrarDades("Introdueix el identificador del Client: ")); if (0==id) return;
+    //Buscar un encargo de acuerdo con el id del cliente
+    private void cercarEncarrecReduit() throws Exception {
+        int id=Integer.parseInt(entrarDades("Introdueix el identificador del Client (deixa en blan per sortir): ")); if (0==id) return;
         List<Encarrec> llista=gestor.cercarEncrrec(id);
         Iterator it= llista.listIterator();
         mostrarDades("Els encarrecs trobats son:\n"+
@@ -108,6 +108,17 @@ public class GestorEncarrecs {
         while (it.hasNext()){
             Encarrec e=(Encarrec) it.next();
             mostrarDades(e.toString()+"\n");
+        }
+    }
+    private void cercarEncarrecComplet() throws Exception{
+        int id=Integer.parseInt(entrarDades("Introdueix el identificador del Client (deixa en blan per sortir): ")); if (0==id) return;
+        List<String> llista=gestor.cercarEncarrecComplet(id);
+        Iterator it= llista.listIterator();
+        mostrarDades("Els encarrecs trobats son:\n"+
+                "-----------------------------\n");
+        while (it.hasNext()){
+            String s=(String) it.next();
+            mostrarDades(s+"\n");
         }
     }
 
@@ -168,6 +179,7 @@ public class GestorEncarrecs {
         mostrarDades("Operació completada satisfactoriament.\n");
     }
 
+    //Añadimos por cada producto que se llevan una entrada en la tabla EncargoProductos
     private void encarrecProductes(int idEncarrec) throws Exception{
         String producte= entrarDades("Escriu un producte: "); if (null==producte) return;
         int quantitat=Integer.parseInt(entrarDades("Quantitat: ")); if (0==quantitat) return;
@@ -177,6 +189,37 @@ public class GestorEncarrecs {
             producte=entrarDades("Escriu un altre producte(deixa en blanc per continua): "); if (null==producte) return;
             quantitat=Integer.parseInt(entrarDades("Quantitat: ")); if (0==quantitat) return;
             gestor.afegirEncarrecProducte(idEncarrec,producte,quantitat);
+        }
+    }
+
+    private void menuEncarrec() throws Exception{
+        int opcio;
+        while (0!=(opcio=textMenuEcarrec())){
+            try {
+                switch (opcio){
+                    case 1:
+                        cercarEncarrecComplet();
+                        break;
+                    case 2:
+                        cercarEncarrecReduit();
+                        break;
+                    default: mostrarDades("Opció incorrecta\n");
+                }
+            }catch (Exception e){
+                mostrarDades("S'ha produit un error: "+e+"\n");
+            }
+        }
+
+    }
+    private int textMenuEcarrec() throws Exception{
+        String menu="\nSelecciona el modo de visualizació\n"+"[1] Modo Complet\n"+
+                "[2] Modo Reduit\n"+"Opcio>";
+        String lin=entrarDades(menu);
+        try {
+            int opcio=Integer.parseInt(lin);
+            return opcio;
+        }catch (Exception e){
+            return -1;
         }
     }
 

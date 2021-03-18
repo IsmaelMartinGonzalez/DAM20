@@ -28,6 +28,7 @@ public class GestorBD {
         this.conn.close();
     }
 
+    //Obtenemos nuevos IDs para las tablas
     public int obtenirNouIDClient() throws Exception{
         return obtenirID("CLIENTS");
     }
@@ -54,6 +55,21 @@ public class GestorBD {
         LinkedList<Encarrec> llista=new LinkedList<>();
         while (rs.next()){
             llista.add(new Encarrec(rs.getInt("ID"),rs.getTimestamp("DATA"),rs.getInt("IDCLIENT")));
+        }
+        return llista;
+    }
+    public List<String> cercarEncarrecComplet(int idClient) throws Exception{
+        Statement cerca= conn.createStatement();
+        ResultSet rs=cerca.executeQuery(
+                "SELECT C.NOM,E.ID AS IDENCARREC, E.DATA, P.NOM AS PRODUCTO, B.QUANTITAT FROM CLIENTS C " +
+                "join ENCARRECS E ON E.IDCLIENT=C.ID " +
+                "JOIN ENCARRECSPRODUCTES B ON B.IDENCARREC=E.ID " +
+                "join PRODUCTES P ON P.ID=B.IDPRODUCTE " +
+                "where C.ID="+idClient);
+        LinkedList<String> llista =new LinkedList<>();
+        while (rs.next()){
+            llista.add(rs.getString("NOM")+"\t"+rs.getInt("IDENCARREC")+"\t"+rs.getString("DATA")+"\t"+
+                    rs.getString("PRODUCTO")+"\t"+rs.getInt("QUANTITAT"));
         }
         return llista;
     }
