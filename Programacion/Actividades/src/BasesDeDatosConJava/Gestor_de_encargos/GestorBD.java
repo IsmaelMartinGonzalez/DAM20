@@ -115,11 +115,18 @@ public class GestorBD {
         }
         return idProducte;
     }
-    //Revisar esto!!!
-    private void cambioDatos(int idProducte, int quantitat) throws Exception{
-     Statement update= conn.createStatement();
-     int quantitatProducte=llistarProductes().indexOf(idProducte);
 
+    private void cambioDatos(int idProducte, int quantitat) throws Exception{
+        int quantitatProducte=0;
+        int pos=-1;
+        for (int i = 0; i < llistarProductes().size(); i++) {
+            if (llistarProductes().get(i).getId()==idProducte){
+                quantitatProducte= llistarProductes().get(i).getStock();
+            }
+        }
+        int quantitatfinal=quantitatProducte-quantitat;
+        Statement update= conn.createStatement();
+        update.executeUpdate("UPDATE PRODUCTES SET QUANTITAT ="+quantitatfinal+" WHERE ID="+idProducte);
     }
 
 }
