@@ -115,7 +115,7 @@ public class GestorBD {
         }
         return idProducte;
     }
-
+    //Cambiamos los datos en la tabla productos
     private void cambioDatos(int idProducte, int quantitat) throws Exception{
         int quantitatProducte=0;
         int pos=-1;
