@@ -85,7 +85,7 @@ public class GestorEncarrecs {
         return linea;
     }
 
-    //Buscar un elemento de acuerdo con su nombre
+    //Buscar un cliente de acuerdo con su nombre
     private void cercarClient() throws Exception{
         String nom=entrarDades("Introdueix el nom del client: "); if (null==nom) return;
         List<Client> llista= gestor.cercarClient(nom);
@@ -98,6 +98,7 @@ public class GestorEncarrecs {
         }
     }
 
+    //Buscar un encargo de acuerdo con el nombre o id del cliente
     private void cercarEncarrec() throws Exception {
         int id=Integer.parseInt(entrarDades("Introdueix el identificador del Client: ")); if (0==id) return;
         List<Encarrec> llista=gestor.cercarEncrrec(id);
@@ -110,6 +111,7 @@ public class GestorEncarrecs {
         }
     }
 
+    //Listado de todos los productos de la base de datos
     private void llistarProductes() throws Exception{
         List<Producte> llista=gestor.llistarProductes();
         Iterator it= llista.listIterator();
@@ -132,11 +134,12 @@ public class GestorEncarrecs {
         gestor.afegirClient(new Client(id,nom,apostal,aelectronica,telefon));
         mostrarDades("Operació completada satisfactoriament.\n");
     }
+
     //Agregar un nuevo encargo
-    //Para poder introducor fechas a la base de datos, generamos un convertidor de fechas en el gesto DB y le pasamos
+    //Para poder introducir fechas en la base de datos, llamamos a un convertidor de fechas en el gesto DB y le pasamos
     // como parametro una fecha de tipo Date.
     public void afegirEncarrec()throws Exception{
-        mostrarDades("Introdueix dades del nou encarrec (deixaen blac per sortir.)\n");
+        mostrarDades("Introdueix dades del nou encarrec (deixa en blac per sortir.)\n");
         int id = gestor.obtenirNouIDEncarrec();
 
         //Le damos formato para poder introducir bien la fehca en la base de datos.
@@ -145,13 +148,13 @@ public class GestorEncarrecs {
 
         int idClient=Integer.parseInt(entrarDades("Id Client: ")); if (0==idClient) return;
 
-        String producte=entrarDades("Producte: "); if (null==producte) return;
-        int quantitat=Integer.parseInt(entrarDades("Quantitat: ")); if (0==quantitat) return;
+        encarrecProductes(id);
 
-        gestor.afegirEncarrec(new Encarrec(id,gestor.covert(data),idClient),producte,quantitat);
+        gestor.afegirEncarrec(new Encarrec(id,gestor.covert(data),idClient));
         mostrarDades("Operació completada satisfactoriament.\n");
     }
 
+    //Añade un producto a la base de datos
     public void afegirProducte()throws Exception{
         mostrarDades("Itrodueix dades del nou producte (deixaen blac per sortir.)\n");
 
@@ -164,6 +167,19 @@ public class GestorEncarrecs {
         gestor.afegirProducte(new Producte(id,nom,preu,stock));
         mostrarDades("Operació completada satisfactoriament.\n");
     }
+
+    private void encarrecProductes(int idEncarrec) throws Exception{
+        String producte= entrarDades("Escriu un producte: "); if (null==producte) return;
+        int quantitat=Integer.parseInt(entrarDades("Quantitat: ")); if (0==quantitat) return;
+        gestor.afegirEncarrecProducte(idEncarrec,producte,quantitat);
+        boolean exit=false;
+        while (!exit){
+            producte=entrarDades("Escriu un altre producte(deixa en blanc per continua): "); if (null==producte) return;
+            quantitat=Integer.parseInt(entrarDades("Quantitat: ")); if (0==quantitat) return;
+            gestor.afegirEncarrecProducte(idEncarrec,producte,quantitat);
+        }
+    }
+
     //Main
     public static void main(String[] args) throws Exception {
     GestorEncarrecs gbd=new GestorEncarrecs();

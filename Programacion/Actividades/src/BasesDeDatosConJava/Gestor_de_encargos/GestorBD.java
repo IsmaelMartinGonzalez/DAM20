@@ -27,6 +27,7 @@ public class GestorBD {
     public void tancar () throws Exception{
         this.conn.close();
     }
+
     public int obtenirNouIDClient() throws Exception{
         return obtenirID("CLIENTS");
     }
@@ -37,6 +38,7 @@ public class GestorBD {
         return obtenirID("PRODUCTES");
     }
 
+    //Obtenemos datos de la tablas
     public List<Client> cercarClient(String nom) throws Exception{
         Statement cerca= conn.createStatement();
         ResultSet rs= cerca.executeQuery("SELECT * FROM CLIENTS WHERE NOM='" + nom + "'");
@@ -65,16 +67,15 @@ public class GestorBD {
         return llista;
     }
 
+    //Añadimos datos a las tablas
     public void  afegirClient (Client c) throws Exception{
         Statement upadte= conn.createStatement();
-        String valors = c.getId()+", '"+c.getNom()+"','"+c.getApostal()+"','"+c.getAelectronica()+"','"+c.getTelefon()+"'";
+        String valors = c.getId()+",'"+c.getNom()+"','"+c.getApostal()+"','"+c.getAelectronica()+"','"+c.getTelefon()+"'";
         upadte.executeUpdate("INSERT INTO CLIENTS VALUES("+valors+")");
     }
-    public void afegirEncarrec(Encarrec e,String producte, int quantitat)throws Exception{
+    public void afegirEncarrec(Encarrec e)throws Exception{
         Statement update=conn.createStatement();
         String valors = e.getId()+", '"+e.getData()+"','"+e.getIdClient()+"'";
-        //Añadimos el encargo con su producto
-        afegirEncarrecProducte(e.getId(),producte,quantitat);
         update.executeUpdate("INSERT  INTO ENCARRECS VALUE ("+valors+")");
     }
     public void afegirProducte(Producte p)throws Exception{
@@ -83,12 +84,22 @@ public class GestorBD {
         update.executeUpdate("INSERT INTO PRODUCTES VALUE ("+valors+")");
     }
 
+    //Añadimos la conexion del encargo con el producto mediante la tabla EncargoProductos
+    public void afegirEncarrecProducte(int idEncarrec, String producte, int quantitat) throws Exception{
+        int idProducte=cercarProducte(producte);
+        Statement update= conn.createStatement();
+        String valors = idEncarrec+",'"+idProducte+"','"+quantitat+"'";
+        update.executeUpdate("INSERT INTO ENCARRECSPRODUCTES VALUE("+valors+")");
+        cambioDatos(idProducte,quantitat);
+    }
+
     //Convierte una fecha de tipo Date en una de tipo Date de mySQL.
     public Timestamp covert(java.util.Date data){
         Timestamp dataSql=new Timestamp(data.getTime());
         return dataSql;
     }
 
+    //Obtenemos un ID para cada tabla
     private int obtenirID(String tabla)throws Exception{
         //Buscar ID Maximo segun la tabla
         Statement cercarMaxId= conn.createStatement();
@@ -97,15 +108,7 @@ public class GestorBD {
         else return 1;
     }
 
-    //Añadimos la conexion del encargo con el producto
-    private void afegirEncarrecProducte(int idEncarrec, String producte, int quantitat) throws Exception{
-        Statement update= conn.createStatement();
-        int idProducte=cercarProducte(producte);
-        String valors = idEncarrec+",'"+idProducte+"','"+quantitat+"'";
-        update.executeUpdate("INSERT INTO ENCARRECSPRODUCTES VALUE("+valors+")");
-        cambioDatos(idProducte,quantitat);
-    }
-    //Buscamos un producto en concreto.
+    //Obtenemos el ID de un producto en concreto a través de su nombre.
     private int cercarProducte(String producte) throws Exception {
         int idProducte = 0;
         Statement cerca = conn.createStatement();
@@ -115,7 +118,8 @@ public class GestorBD {
         }
         return idProducte;
     }
-    //Casmbiamos los datos de la tabla encargos
+
+    //Cambiamos los datos de la tabla productos
     private void cambioDatos(int idProducte, int quantitat) throws Exception{
         int quantitatProducte=0;
         int pos=-1;
