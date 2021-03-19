@@ -33,19 +33,22 @@ public class GestorEncarrecs {
                         cercarClient();
                         break;
                     case 2:
-                        afegirClient();
-                        break;
-                    case 3:
-                        afegirEncarrec();
-                        break;
-                    case 4:
                         menuEncarrec();
                         break;
+                    case 3:
+                        llistarProductes();
+                        break;
+                    case 4:
+                        afegirClient();
+                        break;
                     case 5:
-                        afegirProducte();
+                        afegirEncarrec();
                         break;
                     case 6:
-                        llistarProductes();
+                        afegirProducte();
+                        break;
+                    case 7:
+                        eliminarEncarrec();
                         break;
                     default: mostrarDades("Opció incorrecta\n");
                 }
@@ -58,8 +61,8 @@ public class GestorEncarrecs {
 
     private int menuPrincilap() throws Exception {
         String menu="\nQuina acció vols realitzar?\n"+"[1] Cercar client\n"+
-                "[2] Afegir client\n"+"[3] Afegir encarrec\n"+"[4] Cercar encarrec\n"+"[5] Afegir producte\n"+
-                "[6] Llistar Productes\n"+"[0] Sortir\n"+"Opcio>";
+                "[2] Cercar encarrec\n"+"[3] Llistar Productes\n"+"[4] Afegir client\n"+"[5] Afegir encarrec\n"+
+                "[6] Afegir producte\n"+"[7] Eliminar encarrec\n"+"[0] Sortir\n"+"Opcio>";
         String lin=entrarDades(menu);
         try {
             int opcio=Integer.parseInt(lin);
@@ -179,6 +182,11 @@ public class GestorEncarrecs {
         mostrarDades("Operació completada satisfactoriament.\n");
     }
 
+    public void eliminarEncarrec()throws Exception{
+        int idEncarrec=Integer.parseInt(entrarDades("Escriu l'identficador del encarrec:"));
+        gestor.eliminarEncarrec(idEncarrec);
+        mostrarDades("Operació completada satisfactoriament.\n");
+    }
     //Añadimos por cada producto que se llevan una entrada en la tabla EncargoProductos
     private void encarrecProductes(int idEncarrec) throws Exception{
         String producte= entrarDades("Escriu un producte: "); if (null==producte) return;

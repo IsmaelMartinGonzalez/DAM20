@@ -100,6 +100,12 @@ public class GestorBD {
         update.executeUpdate("INSERT INTO PRODUCTES VALUE ("+valors+")");
     }
 
+    //Elimanamos registros
+    public void eliminarEncarrec(int idEncarrec) throws SQLException {
+        Statement update= conn.createStatement();
+        update.executeUpdate("DELETE  FROM ENCARRECS WHERE ID="+idEncarrec);
+        update.executeUpdate("DELETE FROM ENCARRECSPRODUCTES WHERE IDENCARREC="+idEncarrec);
+    }
     //Añadimos la conexion del encargo con el producto mediante la tabla EncargoProductos
     public void afegirEncarrecProducte(int idEncarrec, String producte, int quantitat) throws Exception{
         int idProducte=cercarProducte(producte);
