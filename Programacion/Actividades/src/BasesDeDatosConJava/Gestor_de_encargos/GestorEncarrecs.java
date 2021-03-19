@@ -25,6 +25,10 @@ public class GestorEncarrecs {
 
 //Others Methods
     public void start() throws Exception{
+        System.out.println(comprobarString("Ismael"));
+        System.out.println(comprobarString("c/Santvicenç de Paul"));
+        System.out.println(comprobarCorreo("I@gmail.com"));
+        System.out.println(comprobarTelefon("695810383"));
         int opcio;
         while (0!=(opcio=menuPrincilap())){
             try {
@@ -240,10 +244,10 @@ public class GestorEncarrecs {
     }
 
     private boolean comprobarString(String string){
-        return string.matches("[a-zA-Z]");
+        return string.matches("[a-zA-Z]{5,15}");
     }
     private boolean comprobarCorreo(String string){
-        return string.matches("^([a-z]{1}@gmail.com)");
+        return string.matches("^([A-Z]{1}@gmail.com)");
     }
     private boolean comprobarTelefon(String string){
         return string.matches("[0-9]{9}");
