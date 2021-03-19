@@ -144,7 +144,6 @@ public class GestorBD {
     //Cambiamos los datos de la tabla productos
     private void cambioDatos(int idProducte, int quantitat) throws Exception{
         int quantitatProducte=0;
-        int pos=-1;
         for (int i = 0; i < llistarProductes().size(); i++) {
             if (llistarProductes().get(i).getId()==idProducte){
                 quantitatProducte= llistarProductes().get(i).getStock();

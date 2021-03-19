@@ -159,6 +159,7 @@ public class GestorEncarrecs {
     //Para poder introducir fechas en la base de datos, llamamos a un convertidor de fechas en el gesto DB y le pasamos
     // como parametro una fecha de tipo Date.
     public void afegirEncarrec()throws Exception{
+        llistarProductes();
         mostrarDades("Introdueix dades del nou encarrec (deixa en blac per sortir.)\n");
         int id = gestor.obtenirNouIDEncarrec();
 
@@ -239,6 +240,7 @@ public class GestorEncarrecs {
         }
     }
 
+    //Filtros a la hora de añadir un cliente nuevo
     private boolean comprobarString(String string){
         return string.matches("[a-zA-Z]{5,15}");
     }
@@ -248,6 +250,7 @@ public class GestorEncarrecs {
     private boolean comprobarTelefon(String string){
         return string.matches("[0-9]{9}");
     }
+
     //Main
     public static void main(String[] args) throws Exception {
     GestorEncarrecs gbd=new GestorEncarrecs();
