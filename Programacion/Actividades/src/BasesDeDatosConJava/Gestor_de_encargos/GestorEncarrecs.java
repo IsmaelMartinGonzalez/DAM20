@@ -25,10 +25,6 @@ public class GestorEncarrecs {
 
 //Others Methods
     public void start() throws Exception{
-        System.out.println(comprobarString("Ismael"));
-        System.out.println(comprobarString("c/Santvicenç de Paul"));
-        System.out.println(comprobarCorreo("I@gmail.com"));
-        System.out.println(comprobarTelefon("695810383"));
         int opcio;
         while (0!=(opcio=menuPrincilap())){
             try {
@@ -150,7 +146,7 @@ public class GestorEncarrecs {
         String aelectronica=entrarDades("E-mail: "); if (null==aelectronica) return;
         String telefon=entrarDades("Telefon: "); if (null==telefon) return;
 
-        if (comprobarString(nom)&&comprobarString(apostal)&&comprobarCorreo(aelectronica)&&comprobarTelefon(telefon)){
+        if (comprobarString(nom)&&comprobarCorreo(aelectronica)&&comprobarTelefon(telefon)){
             gestor.afegirClient(new Client(id,nom,apostal,aelectronica,telefon));
             mostrarDades("Operació completada satisfactoriament.\n");
         }else {
@@ -245,9 +241,6 @@ public class GestorEncarrecs {
 
     private boolean comprobarString(String string){
         return string.matches("[a-zA-Z]{5,15}");
-    }
-    private boolean comprobarAPostal(String string){
-        return string.matches("(?:d+s*[A-Z]?(?![A-Z0-9]))|(?:d+)""");
     }
     private boolean comprobarCorreo(String string){
         return string.matches("^([A-Z]{1}@gmail.com)");
