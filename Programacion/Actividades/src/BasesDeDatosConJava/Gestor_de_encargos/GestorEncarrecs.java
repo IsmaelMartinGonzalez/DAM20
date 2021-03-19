@@ -139,14 +139,20 @@ public class GestorEncarrecs {
 
     //Agregar un nuevo cliente
     public void afegirClient() throws Exception{
+        int id = gestor.obtenirNouIDClient();
         mostrarDades("Introdueix dades del nou client (deixaen blanc per sortir).\n");
         String nom=entrarDades("Nom: "); if (null==nom) return;
         String apostal=entrarDades("Adreça postal: "); if (null==apostal) return;
         String aelectronica=entrarDades("E-mail: "); if (null==aelectronica) return;
         String telefon=entrarDades("Telefon: "); if (null==telefon) return;
-        int id = gestor.obtenirNouIDClient();
-        gestor.afegirClient(new Client(id,nom,apostal,aelectronica,telefon));
-        mostrarDades("Operació completada satisfactoriament.\n");
+
+        if (comprobarString(nom)&&comprobarString(apostal)&&comprobarCorreo(aelectronica)&&comprobarTelefon(telefon)){
+            gestor.afegirClient(new Client(id,nom,apostal,aelectronica,telefon));
+            mostrarDades("Operació completada satisfactoriament.\n");
+        }else {
+            throw new Exception("Error. Alguna dade es incorrecte!");
+        }
+
     }
 
     //Agregar un nuevo encargo
@@ -233,6 +239,15 @@ public class GestorEncarrecs {
         }
     }
 
+    private boolean comprobarString(String string){
+        return string.matches("[a-zA-Z]");
+    }
+    private boolean comprobarCorreo(String string){
+        return string.matches("^([a-z]{1}@gmail.com)");
+    }
+    private boolean comprobarTelefon(String string){
+        return string.matches("[0-9]{9}");
+    }
     //Main
     public static void main(String[] args) throws Exception {
     GestorEncarrecs gbd=new GestorEncarrecs();
