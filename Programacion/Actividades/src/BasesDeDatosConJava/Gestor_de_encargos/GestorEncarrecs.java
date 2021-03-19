@@ -246,6 +246,9 @@ public class GestorEncarrecs {
     private boolean comprobarString(String string){
         return string.matches("[a-zA-Z]{5,15}");
     }
+    private boolean comprobarAPostal(String string){
+        return string.matches("(av.[a-zA-Z]{5,15})|(c/[a-zA-Z]{5,15})");
+    }
     private boolean comprobarCorreo(String string){
         return string.matches("^([A-Z]{1}@gmail.com)");
     }
