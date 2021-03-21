@@ -14,16 +14,17 @@ import java.sql.*;
  */
 public class GestorBD {
 //Attributes
-    Connection conn;
+    private String url="jdbc:mysql://localhost:3306/GestioEncarrecs";
+    private String user="root";
+    private String psw="Fmartin250814";
+    private Connection conn;
 //Builder
     public GestorBD() throws Exception{
-        String url="jdbc:mysql://localhost:3306/GestioEncarrecs";
-        String user="root";
-        String psw="Fmartin250814";
         this.conn=DriverManager.getConnection(url,user,psw);
     }
 
 //Others Methods
+    //Cierra la conexión con la base de datos.
     public void tancar () throws Exception{
         this.conn.close();
     }
@@ -39,7 +40,7 @@ public class GestorBD {
         return obtenirID("PRODUCTES");
     }
 
-    //Obtenemos datos de la tablas
+    //Obtenemos datos de la tabla Clientes
     public List<Client> cercarClient(String nom) throws Exception{
         Statement cerca= conn.createStatement();
         ResultSet rs= cerca.executeQuery("SELECT * FROM CLIENTS WHERE NOM='" + nom + "'");
@@ -49,6 +50,7 @@ public class GestorBD {
         }
         return llista;
     }
+    //Obtenemos datos de la tabla Encargos
     public List<Encarrec> cercarEncrrec(int idClient) throws Exception{
         Statement cerca= conn.createStatement();
         ResultSet rs = cerca.executeQuery("SELECT * FROM ENCARRECS WHERE IDCLIENT='"+idClient+"'");
@@ -73,6 +75,7 @@ public class GestorBD {
         }
         return llista;
     }
+    //Obtenemos datos de la tabla Productos
     public List<Producte> llistarProductes() throws Exception{
         Statement cerca= conn.createStatement();
         ResultSet rs=cerca.executeQuery("SELECT * FROM PRODUCTES");
@@ -83,36 +86,40 @@ public class GestorBD {
         return llista;
     }
 
-    //Añadimos datos a las tablas
+    //Añadimos datos a la tabla Clientes
     public void  afegirClient (Client c) throws Exception{
         Statement upadte= conn.createStatement();
         String valors = c.getId()+",'"+c.getNom()+"','"+c.getApostal()+"','"+c.getAelectronica()+"','"+c.getTelefon()+"'";
         upadte.executeUpdate("INSERT INTO CLIENTS VALUES("+valors+")");
     }
+    //Añadimos datos a la tabla Encargos
     public void afegirEncarrec(Encarrec e)throws Exception{
         Statement update=conn.createStatement();
         String valors = e.getId()+", '"+e.getData()+"','"+e.getIdClient()+"'";
         update.executeUpdate("INSERT  INTO ENCARRECS VALUE ("+valors+")");
     }
+    //Añadimos datos a la tabla Productos
     public void afegirProducte(Producte p)throws Exception{
         Statement update= conn.createStatement();
         String valors= p.getId()+", '"+p.getNom()+"','"+p.getPreu()+"','"+p.getStock()+"'";
         update.executeUpdate("INSERT INTO PRODUCTES VALUE ("+valors+")");
     }
 
-    //Elimanamos registros
-    public void eliminarEncarrec(int idEncarrec) throws SQLException {
+    //Elimanamos registros de la tabla Encargos
+    public void eliminarEncarrec(int idEncarrec) throws Exception {
         Statement update= conn.createStatement();
         update.executeUpdate("DELETE  FROM ENCARRECS WHERE ID="+idEncarrec);
+        sumarStok(idEncarrec);
         update.executeUpdate("DELETE FROM ENCARRECSPRODUCTES WHERE IDENCARREC="+idEncarrec);
     }
+
     //Añadimos la conexion del encargo con el producto mediante la tabla EncargoProductos
     public void afegirEncarrecProducte(int idEncarrec, String producte, int quantitat) throws Exception{
         int idProducte=cercarProducte(producte);
         Statement update= conn.createStatement();
         String valors = idEncarrec+",'"+idProducte+"','"+quantitat+"'";
         update.executeUpdate("INSERT INTO ENCARRECSPRODUCTES VALUE("+valors+")");
-        cambioDatos(idProducte,quantitat);
+        restarStok(idProducte,quantitat);
     }
 
     //Convierte una fecha de tipo Date en una de tipo Date de mySQL.
@@ -142,7 +149,7 @@ public class GestorBD {
     }
 
     //Cambiamos los datos de la tabla productos
-    private void cambioDatos(int idProducte, int quantitat) throws Exception{
+    private void restarStok(int idProducte, int quantitat) throws Exception{
         int quantitatProducte=0;
         for (int i = 0; i < llistarProductes().size(); i++) {
             if (llistarProductes().get(i).getId()==idProducte){
@@ -153,5 +160,24 @@ public class GestorBD {
         Statement update= conn.createStatement();
         update.executeUpdate("UPDATE PRODUCTES SET QUANTITAT ="+quantitatfinal+" WHERE ID="+idProducte);
     }
+    private void sumarStok(int idencarrec) throws Exception {
+        Statement cerca= conn.createStatement();
+        Statement update=conn.createStatement();
+        int quantitatProducte=0;
+        int quantitatStock=0;
+        int quantitatFinal=0;
+        int idProducte=0;
+        ResultSet rs=cerca.executeQuery("SELECT * FROM ENCARRECSPRODUCTES WHERE IDENCARREC="+idencarrec);
+        quantitatProducte=rs.getInt("QUANTITAT");
+        idProducte=rs.getInt("IDPRODUCTE");
+        for (int i = 0; i < llistarProductes().size(); i++) {
+            if (llistarProductes().get(i).getId()==idProducte){
+                quantitatStock=llistarProductes().get(i).getStock();
+            }
+        }
+        quantitatFinal=quantitatStock+quantitatProducte;
+        update.executeUpdate("UPDATE PRODUCTES SET QUANTITAT ="+quantitatFinal+" WHERE ID="+idProducte);
+    }
+
 
 }
