@@ -295,4 +295,8 @@ public class MostrarAgenda extends JFrame {
         browseButtonActionPerformed(evt);
     }
 
+    // main method
+    public static void main(String args[]){
+        new MostrarAgenda();
+    }
 }

@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class Queries {
 
     //Attriubutes
-    private static final String URL = "jdbc:mysql://194.224.79.42:43306/addressbook?useUnicode=true&useTimezone=true&serverTimezone=UTC&useSSL=false";
+    private static final String URL = "jdbc:mysql://194.224.79.42:43306/addressbook";
     private static final String USERNAME = "alumne";
     private static final String PASSWORD = "tofol";
     private Connection connection; // manages connection
