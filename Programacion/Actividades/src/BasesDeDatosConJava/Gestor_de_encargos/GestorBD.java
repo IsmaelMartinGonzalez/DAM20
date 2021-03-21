@@ -168,8 +168,10 @@ public class GestorBD {
         int quantitatFinal=0;
         int idProducte=0;
         ResultSet rs=cerca.executeQuery("SELECT * FROM ENCARRECSPRODUCTES WHERE IDENCARREC="+idencarrec);
-        quantitatProducte=rs.getInt("QUANTITAT");
-        idProducte=rs.getInt("IDPRODUCTE");
+        while (rs.next()){
+            quantitatProducte=rs.getInt("QUANTITAT");
+            idProducte=rs.getInt("IDPRODUCTE");
+        }
         for (int i = 0; i < llistarProductes().size(); i++) {
             if (llistarProductes().get(i).getId()==idProducte){
                 quantitatStock=llistarProductes().get(i).getStock();
