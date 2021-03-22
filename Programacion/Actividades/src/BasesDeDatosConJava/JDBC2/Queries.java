@@ -1,12 +1,9 @@
 package BasesDeDatosConJava.JDBC2;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Project name: DAM20/BasesDeDatosConJava.JDBC2
@@ -28,6 +25,8 @@ public class Queries {
     private PreparedStatement selectAllPeople;
     private PreparedStatement selectPeopleByLastName;
     private PreparedStatement insertNewPerson;
+    private PreparedStatement updatePerson;
+    private PreparedStatement deletePerson;
 
     //Builder
     public Queries(){
@@ -39,12 +38,16 @@ public class Queries {
                     connection.prepareStatement("SELECT * FROM ADDRESSES");
             // create query that selects entries with a specific last name
             selectPeopleByLastName = connection.prepareStatement(
-                    "SELECT * FROM ADDRESSES WHERE LastName = ?");
+                    "SELECT * FROM ADDRESSES WHERE UPPER(LastName) LIKE ?");
             // create insert that adds a new entry into the database
             insertNewPerson = connection.prepareStatement(
                     "INSERT INTO ADDRESSES " +
-                            "(FirstName, LastName, Email, PhoneNumber) " +
-                            "VALUES (?, ?, ?, ?)");
+                            "(AddressId,FirstName, LastName, Email, PhoneNumber) " +
+                            "VALUES (?,?, ?, ?, ?)");
+            updatePerson= connection.prepareStatement(
+                    "UPDATE ADDRESSES SET FIRSTNAME=?, LASTNAME=?, EMAIL=?, PHONENUMBER=? WHERE ADDRESSID=?");
+            deletePerson=connection.prepareStatement(
+                    "DELETE FROM ADDRESSES WHERE ADDRESSID=?");
         }
         catch (SQLException sqlException){
             sqlException.printStackTrace();
@@ -125,10 +128,11 @@ public class Queries {
         int result = 0;
         // set parameters, then execute
         try{
-            insertNewPerson.setString(1,fname);
-            insertNewPerson.setString(2,lname);
-            insertNewPerson.setString(3,email);
-            insertNewPerson.setString(4,num);
+            insertNewPerson.setInt(1,generateNewID());
+            insertNewPerson.setString(2,fname);
+            insertNewPerson.setString(3,lname);
+            insertNewPerson.setString(4,email);
+            insertNewPerson.setString(5,num);
 
             // insert the new entry; returns # of rows updated
             result = insertNewPerson.executeUpdate();
@@ -140,6 +144,70 @@ public class Queries {
         return result;
     }
 
+    //update an entry
+    public int updateEntry(String fname,String lname,String email, String num,String addressId){
+        int result=0;
+        int id=Integer.parseInt(addressId);
+        try{
+            updatePerson.setString(1,fname);
+            updatePerson.setString(2,lname);
+            updatePerson.setString(3,email);
+            updatePerson.setString(4,num);
+            updatePerson.setInt(5,id);
+            result=updatePerson.executeUpdate();
+
+        }catch (SQLException sqlException){
+            sqlException.printStackTrace();
+            close();
+        }
+        return result;
+    }
+
+    //delete an entry
+    public int deleteEntry(String addressId){
+        int result=0;
+        int id=Integer.parseInt(addressId);
+        try{
+            deletePerson.setInt(1,id);
+            result=deletePerson.executeUpdate();
+
+        }catch (SQLException sqlException){
+            sqlException.printStackTrace();
+            close();
+        }
+        return result;
+    }
+
+
+    //generate new id
+    private int generateID() throws SQLException {
+        Statement searchMaxId=connection.createStatement();
+        ResultSet rs=searchMaxId.executeQuery("SELECT MAX(ADDRESSID) FROM ADDRESSES");
+        if(rs.next()) return (1+rs.getInt(1));
+        else return 1;
+    }
+
+    private int generateNewID() throws SQLException {
+        int id=generateRandomNum();
+        if(!idExist(id)){
+            return id;
+        }else {
+            return generateNewID();
+        }
+    }
+
+    private int generateRandomNum(){
+        return (int) (Math.random()*9999)+1;
+    }
+    private boolean idExist(int id) throws SQLException {
+        boolean exist=false;
+        Statement search=connection.createStatement();
+        ResultSet rs= search.executeQuery("SELECT * FROM ADDRESSES WHERE ADDRESSID="+id);
+        while (rs.next()){
+            exist=true;
+        }
+        return exist;
+    }
     // close the database connection
     public void close(){
         try{

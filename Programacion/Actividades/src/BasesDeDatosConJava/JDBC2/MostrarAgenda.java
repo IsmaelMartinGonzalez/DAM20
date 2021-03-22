@@ -59,6 +59,8 @@ public class MostrarAgenda extends JFrame {
     private JPanel displayPanel;
     private JTextField queryTextField;
     private JButton insertButton;
+    private JButton updateButton;
+    private JButton deleteButton;
 
     //Builder
     public MostrarAgenda(){
@@ -89,9 +91,13 @@ public class MostrarAgenda extends JFrame {
         queryButton = new JButton();
         browseButton = new JButton();
         insertButton = new JButton();
+        updateButton= new JButton();
+        deleteButton=new JButton();
+
         setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        setSize(400, 300);
+        setSize(400, 350);
         setResizable(false);
+
         navigatePanel.setLayout(new BoxLayout(navigatePanel, BoxLayout.X_AXIS));
         previousButton.setText("Previous");
         previousButton.setEnabled(false);
@@ -134,24 +140,30 @@ public class MostrarAgenda extends JFrame {
         );
         navigatePanel.add(nextButton);
         add(navigatePanel);
+
         displayPanel.setLayout(new GridLayout(5, 2, 4, 4));
         idLabel.setText("Address ID:");
         displayPanel.add(idLabel);
         idTextField.setEditable(false);
         displayPanel.add(idTextField);
+
         firstNameLabel.setText("First Name:");
         displayPanel.add(firstNameLabel);
         displayPanel.add(firstNameTextField);
+
         lastNameLabel.setText("Last Name:");
         displayPanel.add(lastNameLabel);
         displayPanel.add(lastNameTextField);
+
         emailLabel.setText("Email:");
         displayPanel.add(emailLabel);
         displayPanel.add(emailTextField);
+
         phoneLabel.setText("Phone Number:");
         displayPanel.add(phoneLabel);
         displayPanel.add(phoneTextField);
         add(displayPanel);
+
         queryPanel.setLayout(new BoxLayout(queryPanel, BoxLayout.X_AXIS));
         queryPanel.setBorder(BorderFactory.createTitledBorder("Find an entry by last name"));
         queryLabel.setText("Last Name:");
@@ -171,6 +183,7 @@ public class MostrarAgenda extends JFrame {
         queryPanel.add(queryButton);
         queryPanel.add(Box.createHorizontalStrut(5));
         add(queryPanel);
+
         browseButton.setText("Browse All Entries");
         browseButton.addActionListener(
                 new ActionListener() {
@@ -180,6 +193,7 @@ public class MostrarAgenda extends JFrame {
                 }
         );
         add(browseButton);
+
         insertButton.setText("Insert New Entry");
         insertButton.addActionListener(
                 new ActionListener() {
@@ -189,6 +203,28 @@ public class MostrarAgenda extends JFrame {
                 }
         );
         add(insertButton);
+
+        updateButton.setText("Update This Entry");
+        updateButton.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        updateButtonActionPerformed(evt);
+                    }
+                }
+        );
+        add(updateButton);
+
+        deleteButton.setText("Delete This Entry");
+        deleteButton.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        deleteButtonActionPerformed(evt);
+                    }
+                }
+        );
+        add(deleteButton);
+
+
         addWindowListener(
                 new WindowAdapter() {
                     public void windowClosing(WindowEvent evt){
@@ -292,6 +328,33 @@ public class MostrarAgenda extends JFrame {
         else
             JOptionPane.showMessageDialog(this, "Person not added!",
                     "Error", JOptionPane.PLAIN_MESSAGE);
+        browseButtonActionPerformed(evt);
+    }
+
+    //handeles call when updateButton id cliked
+    private void updateButtonActionPerformed(ActionEvent evt){
+        int result= personQueries.updateEntry(firstNameTextField.getText(),lastNameTextField.getText(),
+                emailTextField.getText(),phoneTextField.getText(),idTextField.getText());
+        if(result==1){
+            JOptionPane.showMessageDialog(this,"Person updated!",
+                    "Person updated", JOptionPane.PLAIN_MESSAGE);
+        }else {
+            JOptionPane.showMessageDialog(this,"Person not updated!",
+                    "Person not updated", JOptionPane.PLAIN_MESSAGE);
+        }
+        browseButtonActionPerformed(evt);
+    }
+
+    //handeles call when deleteButton id cliked
+    private void deleteButtonActionPerformed(ActionEvent evt){
+        int result= personQueries.deleteEntry(idTextField.getText());
+        if(result==1){
+            JOptionPane.showMessageDialog(this,"Person deleted!",
+                    "Person deleted", JOptionPane.PLAIN_MESSAGE);
+        }else {
+            JOptionPane.showMessageDialog(this,"Person not deleted!",
+                    "Person not deleted", JOptionPane.PLAIN_MESSAGE);
+        }
         browseButtonActionPerformed(evt);
     }
 
