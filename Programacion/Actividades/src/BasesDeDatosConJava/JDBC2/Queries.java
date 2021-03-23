@@ -16,6 +16,7 @@ import java.util.Random;
  * @Version:1.0
  */
 public class Queries {
+    //En muchos aparatdo he decidido respetar el idioma y comentar en ingles para mantener la coerencia.
 
     //Attriubutes
     private static final String URL = "jdbc:mysql://194.224.79.42:43306/addressbook";
@@ -25,6 +26,7 @@ public class Queries {
     private PreparedStatement selectAllPeople;
     private PreparedStatement selectPeopleByLastName;
     private PreparedStatement insertNewPerson;
+    //Added two news attributes
     private PreparedStatement updatePerson;
     private PreparedStatement deletePerson;
 
@@ -40,12 +42,15 @@ public class Queries {
             selectPeopleByLastName = connection.prepareStatement(
                     "SELECT * FROM ADDRESSES WHERE UPPER(LastName) LIKE ?");
             // create insert that adds a new entry into the database
+            //Se ha añadido la dirección Id para poder determinar la posición de la entrada
             insertNewPerson = connection.prepareStatement(
                     "INSERT INTO ADDRESSES " +
                             "(AddressId,FirstName, LastName, Email, PhoneNumber) " +
                             "VALUES (?,?, ?, ?, ?)");
+            // create an update query that changes the values of certain columns
             updatePerson= connection.prepareStatement(
                     "UPDATE ADDRESSES SET FIRSTNAME=?, LASTNAME=?, EMAIL=?, PHONENUMBER=? WHERE ADDRESSID=?");
+            // create a query that removes a record from the database
             deletePerson=connection.prepareStatement(
                     "DELETE FROM ADDRESSES WHERE ADDRESSID=?");
         }
@@ -128,7 +133,8 @@ public class Queries {
         int result = 0;
         // set parameters, then execute
         try{
-            insertNewPerson.setInt(1,generateNewID());
+            //Añadimos el id de forma que genera un id en la ultima posición
+            insertNewPerson.setInt(1,generateID());
             insertNewPerson.setString(2,fname);
             insertNewPerson.setString(3,lname);
             insertNewPerson.setString(4,email);
@@ -187,6 +193,7 @@ public class Queries {
         else return 1;
     }
 
+    //generate new random id, if an id exists it generates another
     private int generateNewID() throws SQLException {
         int id=generateRandomNum();
         if(!idExist(id)){
@@ -196,9 +203,12 @@ public class Queries {
         }
     }
 
+    //generate a random number(1-9999)
     private int generateRandomNum(){
         return (int) (Math.random()*9999)+1;
     }
+
+    //Check if an id exists
     private boolean idExist(int id) throws SQLException {
         boolean exist=false;
         Statement search=connection.createStatement();
@@ -208,6 +218,7 @@ public class Queries {
         }
         return exist;
     }
+
     // close the database connection
     public void close(){
         try{

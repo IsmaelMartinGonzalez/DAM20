@@ -59,6 +59,8 @@ public class MostrarAgenda extends JFrame {
     private JPanel displayPanel;
     private JTextField queryTextField;
     private JButton insertButton;
+
+    //Added two news attributes
     private JButton updateButton;
     private JButton deleteButton;
 
@@ -203,7 +205,7 @@ public class MostrarAgenda extends JFrame {
                 }
         );
         add(insertButton);
-
+        //Introducimos el Boton de Update en la ventana y le dotamos de su acción
         updateButton.setText("Update This Entry");
         updateButton.addActionListener(
                 new ActionListener() {
@@ -213,7 +215,7 @@ public class MostrarAgenda extends JFrame {
                 }
         );
         add(updateButton);
-
+        //Introducimos el Boton de Delete en la ventana y le dotamos de su acción
         deleteButton.setText("Delete This Entry");
         deleteButton.addActionListener(
                 new ActionListener() {
@@ -331,7 +333,7 @@ public class MostrarAgenda extends JFrame {
         browseButtonActionPerformed(evt);
     }
 
-    //handeles call when updateButton id cliked
+    // handeles call when updateButton id cliked
     private void updateButtonActionPerformed(ActionEvent evt){
         int result= personQueries.updateEntry(firstNameTextField.getText(),lastNameTextField.getText(),
                 emailTextField.getText(),phoneTextField.getText(),idTextField.getText());
@@ -345,7 +347,7 @@ public class MostrarAgenda extends JFrame {
         browseButtonActionPerformed(evt);
     }
 
-    //handeles call when deleteButton id cliked
+    // handeles call when deleteButton id cliked
     private void deleteButtonActionPerformed(ActionEvent evt){
         int result= personQueries.deleteEntry(idTextField.getText());
         if(result==1){
