@@ -215,6 +215,7 @@ public class MostrarAgenda extends JFrame {
                 }
         );
         add(updateButton);
+
         //Introducimos el Boton de Delete en la ventana y le dotamos de su acción
         deleteButton.setText("Delete This Entry");
         deleteButton.addActionListener(
@@ -349,7 +350,7 @@ public class MostrarAgenda extends JFrame {
 
     // handeles call when deleteButton id cliked
     private void deleteButtonActionPerformed(ActionEvent evt){
-        int result= personQueries.deleteEntry(idTextField.getText());
+        int result=personQueries.deleteEntry(idTextField.getText());
         if(result==1){
             JOptionPane.showMessageDialog(this,"Person deleted!",
                     "Person deleted", JOptionPane.PLAIN_MESSAGE);
